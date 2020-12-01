@@ -23,6 +23,7 @@ function addItem(e) {
     liItem.appendChild(button);
 
     input.value = '';
+    show(e);
   }
 }
 
@@ -32,23 +33,38 @@ function del(e) {
     input.focus();
   }
   
-  if (e.target.type != 'submit') {
-    // console.log(e.target)
+  if (e.target.type != 'submit' && e.srcElement.nodeName != 'UL') {
+    // console.log(e.srcElement.nodeName)
     e.target.setAttribute('class','finish');
     e.target.parentNode.setAttribute('class','finish');
   }
 }
 
 function show(e) {
-  // console.log(e);
-  itemsNews = itemList.children;
-  while (itemList.firstChild) {
-    itemList.removeChild(itemList.firstChild);
+  console.log(e)
+  if (e.target.getAttribute('class') === "all" || e.srcElement.nodeName === 'BUTTON') {
+    for (let i = 0; i < itemList.children.length; i++) {
+      itemList.children[i].style.display = 'block';
+    }
   }
-  
-  if (e.target.getAttribute('class') === "all") {
-    for (let i = 0; i < itemsNews.length; i++) {
-      itemList.appendChild(itemsNews[i]);
+
+  if (e.target.getAttribute('class') === "finish") {
+    for (let i = 0; i < itemList.children.length; i++) {
+      if (itemList.children[i].getAttribute('class') === "finish") {
+        itemList.children[i].style.display = 'none';
+      } else {
+        itemList.children[i].style.display = 'block';
+      }
+    }
+  }
+
+  if (e.target.getAttribute('class') === "unfinished") {
+    for (let i = 0; i < itemList.children.length; i++) {
+      if (itemList.children[i].getAttribute('class') === "finish") {
+        itemList.children[i].style.display = 'block';
+      } else {
+        itemList.children[i].style.display = 'none';
+      }
     }
   }
 }
