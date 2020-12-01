@@ -1,0 +1,72 @@
+.container {
+    margin: 0 auto;
+    max-width: 900px;
+    background-color: #eee;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.input {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.input input {
+    margin: 10px;
+    height: 30px;
+    width: 200px;
+    border: 1px solid #666;
+    border-radius: 10px;
+
+}
+
+input:focus {
+    outline: none;
+}
+
+input:hover {
+    box-shadow: 0 0 10px #000;
+}
+
+.input button {
+    line-height: 30px;
+    font-size: 16px;
+    border-radius: 10px;
+    padding: 0px 20px;
+    border: 1px solid #666;
+}
+
+button:focus {
+    outline: none;
+}
+
+button:hover {
+    background-color: #999;
+}
+
+.container ul {
+    height: 500px;
+    max-height: 500px;
+    list-style-type: none;
+}
+
+.button {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.button button {
+    line-height: 30px;
+    margin: 0px 20px 20px 20px;
+}
+
+.item {
+    overflow-y: auto;
+}
+
+ul li {
+    width: auto;
+    background-color: #fff;
+}
