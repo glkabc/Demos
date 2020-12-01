@@ -49,6 +49,7 @@ button:hover {
     height: 500px;
     max-height: 500px;
     list-style-type: none;
+    padding: 0px;
 }
 
 .button {
@@ -67,6 +68,27 @@ button:hover {
 }
 
 ul li {
-    width: auto;
     background-color: #fff;
+    border-radius: 10px;
+    margin: 10px 0px;
+    padding: 10px;
+}
+
+ul li span {
+    float: left;
+}
+
+ul li button {
+    float: right;
+    width: 50px;
+}
+
+ul li::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+li.finish {
+    background-color: #999;
 }
