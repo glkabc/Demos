@@ -1,0 +1,63 @@
+.box {
+    width: 1400px;
+    margin: 20px auto;
+    border: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #eee;
+    display: flex;
+}
+
+.game {
+    width: 1000px;
+    height: 800px;
+    margin: 10px;
+    background-color: #fff;
+    position: relative;
+}
+
+.control {
+    flex: 1;
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+    background-color: #fff;
+    padding-top: 50px;
+}
+
+.game div {
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.control span {
+    font-size: 20px;
+    margin-top: 50px;
+}
+
+.control div {
+    margin-top: 50px;
+}
+
+.control div button {
+    width: 100px;
+    margin: 20px;
+    padding: 10px 20px;
+    border: 1px solid #000;
+    border-radius: 20px;
+}
+
+.control div button:focus {
+    outline: none;
+}
+
+.control div button:hover {
+    background-color: rgba(0, 0, 0, .5);
+    box-shadow: 0 0 20px #eee;
+}
+

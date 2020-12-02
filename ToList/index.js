@@ -41,31 +41,38 @@ function del(e) {
 }
 
 function show(e) {
-  console.log(e)
-  if (e.target.getAttribute('class') === "all" || e.srcElement.nodeName === 'BUTTON') {
+  // console.log(e)
+  showAllButton.style.backgroundColor = '#eee';
+  showFinish.style.backgroundColor = '#eee';
+  showUnfinished.style.backgroundColor = '#eee';
+
+  if (e.target.getAttribute('class') === "all" || e.target.getAttribute('class') === "add") {
     for (let i = 0; i < itemList.children.length; i++) {
       itemList.children[i].style.display = 'block';
     }
+    showAllButton.style.backgroundColor = '#999';
   }
 
   if (e.target.getAttribute('class') === "finish") {
     for (let i = 0; i < itemList.children.length; i++) {
       if (itemList.children[i].getAttribute('class') === "finish") {
-        itemList.children[i].style.display = 'none';
-      } else {
         itemList.children[i].style.display = 'block';
+      } else {
+        itemList.children[i].style.display = 'none';
       }
     }
+    e.target.style.backgroundColor = '#999';
   }
 
   if (e.target.getAttribute('class') === "unfinished") {
     for (let i = 0; i < itemList.children.length; i++) {
       if (itemList.children[i].getAttribute('class') === "finish") {
-        itemList.children[i].style.display = 'block';
-      } else {
         itemList.children[i].style.display = 'none';
+      } else {
+        itemList.children[i].style.display = 'block';
       }
     }
+    e.target.style.backgroundColor = '#999';
   }
 }
 
