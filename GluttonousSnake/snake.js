@@ -54,9 +54,12 @@ function Snake ( width, height, color) {
 }
 
 Snake.prototype.drawSnake = function () {
-    // console.log(document.querySelectorAll('.sankeBody'))
-    for (let i = 0; i < document.querySelectorAll('.sankeBody').length; i++) {
-        game.removeChild(document.querySelectorAll('.sankeBody')[i]);
+    console.log(document.querySelectorAll('.sankeBody').length)
+    // for (let i = 0; i < document.querySelectorAll('.sankeBody').length; i++) {
+    //     game.removeChild(document.querySelectorAll('.sankeBody')[i]);
+    // }
+    while (document.querySelectorAll('.sankeBody').length) {
+        game.removeChild(document.querySelectorAll('.sankeBody')[0]);
     }
 
     for (let i = 0; i < sankeListItem.length; i++) {
@@ -126,19 +129,29 @@ function initGame() {
         alert('闯墙了！！！！ 游戏结束！！！！！！');
         
     }else {
+        // 到达顶部从低部出来
         if (sankeListItem[0].top < 0) {
             sankeListItem[0].top = 780;
         }
+        // 到达底部从顶部出来
         if (sankeListItem[0].top > 780) {
             sankeListItem[0].top = 0;
         }
         snake.drawSnake();
         snake.moveSnake(direction, speed);
         window.onkeydown = e => {
-            if (e.key === 'w' || e.key === 'W') direction = 'top';
-            if (e.key === 's' || e.key === 'S') direction = 'bottom';
-            if (e.key === 'a' || e.key === 'A') direction = 'left';
-            if (e.key === 'd' || e.key === 'D') direction = 'right';
+            if (e.key === 'w' || e.key === 'W') {
+                if (direction != 'bottom') {direction = 'top'}
+            };
+            if (e.key === 's' || e.key === 'S')  {
+                if (direction != 'top') {direction = 'bottom'}
+            };
+            if (e.key === 'a' || e.key === 'A') {
+                if (direction != 'right') {direction = 'left'}
+            };
+            if (e.key === 'd' || e.key === 'D') {
+                if (direction != 'left') {direction = 'right'}
+            };
         }
         if (sankeListItem[0].left === food.x && sankeListItem[0].top === food.y) {
             grade++;
@@ -165,7 +178,7 @@ startGame.addEventListener('click',() => {
     clearInterval(timeclick);
     timeclick = setInterval(() => {
         // console.log(sankeListItem);
-        console.log(setIntervalSpeed);
+        // console.log(setIntervalSpeed);
         initGame();
     }, setIntervalSpeed)
 });
@@ -195,7 +208,6 @@ speedCut.addEventListener('click', () => {
     }, setIntervalSpeed)
     setIntervalSpeed += 20;
 });
-
 
 
 
