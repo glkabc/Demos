@@ -74,18 +74,12 @@ Food.prototype.clearFood = function () {
 }
 
 function Snake (width, height, color) {
-    // this.sankeListItem = [...sankeListItem];
     this.width = width;
     this.height = height;
     this.color = color;
 }
 
 Snake.prototype.drawSnake = function () {
-    // console.log(document.querySelectorAll('.sankeBody').length)
-    // for (let i = 0; i < document.querySelectorAll('.sankeBody').length; i++) {
-    //     game.removeChild(document.querySelectorAll('.sankeBody')[i]);
-    // }
-
     // 在重新画蛇时先抹去先前的蛇,以达到蛇移动的目的
     while (document.querySelectorAll('.sankeBody').length) {
         game.removeChild(document.querySelectorAll('.sankeBody')[0]);
@@ -125,7 +119,6 @@ Snake.prototype.moveSnake = function (direction, speed) {
             sankeListItem[0].top += speed;
             break;
     }
-    // console.log(sankeListItem)
 }
 
 Snake.prototype.addSnakeLenght = function () {
@@ -141,7 +134,6 @@ Snake.prototype.addSnakeLenght = function () {
 }
 
 let food = new Food(20, 20, random(0,50) * 20, random(0,40) * 20, 'green');
-// let food = new Food(20, 20, 220, 200, 'green');
 food.drawFood();
 
 let snake = new Snake(20, 20, 'red');
@@ -195,15 +187,8 @@ function initGame () {
             food.drawFood();
             snake.addSnakeLenght();
         }
-
-        // if (sankeListItem.length % 9 === 0 && addSpeedInGameRunging) {
-        //     speed += 10;
-        //     addSpeedInGameRunging = false;
-        //     console.log('速度增加了10');
-        // }
     }
 }
-
 
 startGame.addEventListener('click',() => {
     clearInterval(timeclick);
@@ -235,28 +220,3 @@ speedCut.addEventListener('click', () => {
         setIntervalSpeed += 20;
     }
 });
-
-
-
-// function runStrart() {
-//     snake.drawSnake();
-//     snake.moveSnake(direction, 20);
-//     window.onkeydown = e => {
-//         if (e.key === 'w' || e.key === 'W') direction = 'top';
-//         if (e.key === 's' || e.key === 'S') direction = 'bottom';
-//         if (e.key === 'a' || e.key === 'A') direction = 'left';
-//         if (e.key === 'd' || e.key === 'D') direction = 'right';
-//     }
-//     if (sankeListItem[0].left === food.x && sankeListItem[0].top === food.y) {
-//         console.log(1111)
-//         grade++;
-//         grades.textContent = '分数： ' + grade;
-//         food = new Food(20, 20, random(0,50) * 20, random(0,40) * 20, 'green');
-//         food.clearFood();
-//         food.drawFood();
-//         snake.addSnakeLenght();
-//     }
-
-//     requestAnimationFrame(runStrart);
-// }
-// runStrart();
