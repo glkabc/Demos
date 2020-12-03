@@ -23,6 +23,8 @@ function addItem(e) {
     liItem.appendChild(button);
 
     input.value = '';
+
+    // 添加一个标签就跳到显示全部标签上
     show(e);
   }
 }
@@ -40,12 +42,14 @@ function del(e) {
   }
 }
 
+// 展示标签
 function show(e) {
   // console.log(e)
   showAllButton.style.backgroundColor = '#eee';
   showFinish.style.backgroundColor = '#eee';
   showUnfinished.style.backgroundColor = '#eee';
 
+  // 显示全部标签
   if (e.target.getAttribute('class') === "all" || e.target.getAttribute('class') === "add") {
     for (let i = 0; i < itemList.children.length; i++) {
       itemList.children[i].style.display = 'block';
@@ -53,6 +57,7 @@ function show(e) {
     showAllButton.style.backgroundColor = '#999';
   }
 
+  // 显示未完成的标签
   if (e.target.getAttribute('class') === "finish") {
     for (let i = 0; i < itemList.children.length; i++) {
       if (itemList.children[i].getAttribute('class') === "finish") {
@@ -64,6 +69,7 @@ function show(e) {
     e.target.style.backgroundColor = '#999';
   }
 
+  // 显示已完成的标签
   if (e.target.getAttribute('class') === "unfinished") {
     for (let i = 0; i < itemList.children.length; i++) {
       if (itemList.children[i].getAttribute('class') === "finish") {

@@ -5,6 +5,7 @@
     padding: 10px;
     border-radius: 10px;
     background-color: #eee;
+    box-shadow: 0 0 20px #000;
     display: flex;
 }
 
@@ -41,7 +42,7 @@
 }
 
 .control div {
-    margin-top: 50px;
+    margin-top: 35px;
 }
 
 .control div button {
@@ -61,3 +62,28 @@
     box-shadow: 0 0 20px #eee;
 }
 
+.reminder {
+    padding: 25px 0px;
+    background-color: #eee;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgb(97, 94, 94);
+}
+
+.reminder div {
+    margin: 0px;
+    padding-bottom: 40px;
+}
+.reminder div span {
+    width: 50px;
+    margin: 40px;
+}
+
+.game div[class='sankeBody']:nth-child(2n) {
+    background-color: rgb(165, 154, 154);
+}
+.game div[class='sankeBody']:nth-child(2n + 1) {
+    background-color: rgb(37, 35, 35);
+}
+.game div[class='sankeBody']:nth-child(1) {
+    background-color: rgb(204, 43, 43);
+}
