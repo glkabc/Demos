@@ -196,11 +196,11 @@ function initGame () {
             snake.addSnakeLenght();
         }
 
-        // if (sankeListItem.length % 9 === 0 && addSpeedInGameRunging) {
-        //     speed += 10;
-        //     addSpeedInGameRunging = false;
-        //     console.log('速度增加了10');
-        // }
+        if (sankeListItem.length % 9 === 0 && addSpeedInGameRunging) {
+            setIntervalSpeed -= 10;
+            addSpeedInGameRunging = false;
+            console.log('速度增加了10');
+        }
     }
 }
 
