@@ -19,17 +19,12 @@ export default {
   props: {
       ListItems: Array
   },
-  data() {
-      return {
-          show: 0
-      }
-  },
 //   mountde() {
 //       this.ListItems = _.shuffle(this.ListItems);
 //   },
   computed: {
       items () {
-          switch(this.show) {
+          switch(this.$route.params.id) {
               case null:
               case 0: return this.ListItems;                               // 显示全部
               case 1: return this.ListItems.filter(item => item.done)      // 显示已完成
@@ -44,12 +39,6 @@ export default {
       },
       itemDone(id) {
           this.$emit('itemDone', id);
-      }
-  },
-  watch: {
-      // 监听路由变化，并做相应改变
-      $route(to) {
-        this.show = to.params.id;
       }
   }
 }
