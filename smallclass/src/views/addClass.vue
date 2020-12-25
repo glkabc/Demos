@@ -90,6 +90,11 @@ export default {
         margin: 20px;
         background-color: #eee;
         height: 199px;
+        transition: all 0.5s;
+        img {
+            width: 100%;
+            height: 100%;
+        }
         &:hover {
           box-shadow: 0 0 10px #666;  
         }
@@ -205,5 +210,22 @@ export default {
                 }
             }
         }
+    }
+</style>
+<style lang="css">
+    @keyframes hovertobig {
+        form {
+            width: 215px;
+            height: 199px;
+        }
+        to {
+            width: 220px;
+            height: 204px;
+        }
+    }
+    .addclass:hover {
+        /* transition: hovertobig 0.5s ease-in-out; */
+        width: 220px;
+        height: 204px;
     }
 </style>

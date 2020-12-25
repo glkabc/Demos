@@ -1,7 +1,7 @@
 <template>
   <div class="container" v-if="message">
       <AddClass/>
-      <ClassItem v-for="(item,index) in 14" :key="index"/>
+      <ClassItem v-for="(item,index) in 10" :key="index"/>
   </div>
   <div class="containers" v-else>
       <img src="@/assets/noCourses.png" alt="无课程" id="noClass">

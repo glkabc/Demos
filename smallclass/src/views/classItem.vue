@@ -1,7 +1,8 @@
 <template>
   <div class="classitem">
       <img src="@/assets/upload.png" alt="图片描述">
-      <p>ClassItem</p>
+      <p>ClassItem<img src="@/assets/change.png" alt="图标"></p>
+      
   </div>
 </template>
 
@@ -41,6 +42,13 @@ export default {
             line-height: 50px;
             width: 100%;
             margin: 0;
+            img {
+              position: absolute;
+              bottom: 15px;
+              right: 20px;
+              width: 20px;
+              height: 20px;
+            }
         }
     }
 </style>
