@@ -1,5 +1,5 @@
 <template>
-  <div class="container" v-if="message">
+  <div class="container" v-if="message.list.length > 0">
       <AddClass/>
       <ClassItem  v-for="(item,index) in message.list" :item='item' :key="index"/>
   </div>
@@ -16,7 +16,19 @@ export default {
   name:  'MyCreation',
   data() {
     return {
-        message: Object
+        message: {
+            list: [
+                {
+                    id: 1,
+                    name: 'c++',
+                    imgSrc: '../../assets/upload.png'
+                },{
+                    id: 2,
+                    name: 'c++',
+                    imgSrc: '../../assets/upload.png'
+                }
+            ]
+        }
     }
   },
   mounted() {
@@ -28,10 +40,19 @@ export default {
   },
   methods: {
       getMessage() {
-          Axios.get('http://localhost:3000/').then(res => {
-              console.log(JSON.parse(res.request.response))
-              this.message = JSON.parse(res.request.response)
-          })
+        //   Axios.get('http://localhost:3000/').then(res => {
+        //       console.log(JSON.parse(res.request.response))
+        //       this.message = JSON.parse(res.request.response)
+        //   })
+        // Axios.get('/classMessage', {
+        //     params: {
+        //         createType: 2,
+        //         pageNum: 1,
+        //         pageSize: 14
+        //     }
+        // }).then(res => {
+        //     console.log(res.response)
+        // })
       }
   }
 }
@@ -43,6 +64,10 @@ export default {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr;
+        // // display: flex;
+        // .classitem {
+        //     width: 20%;
+        // }
     }
     .containers {
         // background-image: url('../../assets/noCourses.png');

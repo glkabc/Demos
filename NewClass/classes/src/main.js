@@ -12,6 +12,7 @@ Vue.config.productionTip = false;
 Vue.component('can-i-use', CanIUse);
 if (process.env.NODE_ENV === "development") {
   const { worker } = require("./mocks/browser");
+  console.log('start mock')
   worker.start();
 }
 new Vue({

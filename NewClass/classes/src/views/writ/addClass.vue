@@ -1,9 +1,9 @@
 <template>
-  <div class="addclass" @click="addClassItem">
+  <div class="addclass" @click="addBoxShow = !addBoxShow">
       <img src="../../assets/add.png" alt="添加">
       <!-- <h3>AddClass</h3> -->
       <!-- <input type="file"> -->
-      <div class="addbox">
+      <!-- <div class="addbox">
           <div class="addClass">
               <form action="#">
                   <h3>新建课程</h3>
@@ -25,28 +25,33 @@
                   <button class="addFalse" @click="addFalse">取消</button>
               </form>
           </div>
-      </div>
+      </div> -->
+      <AddBox :style="addBoxShow ? 'display: block' : 'display: none'"/>
   </div>
 </template>
 
 <script>
+import AddBox from './AddBox'
 export default {
   name:  'AddClass',
   data() {
     return {
-
+        addBoxShow: false
     }
   },
+  components: {
+      AddBox
+  },
   methods: {
-      addClassItem(e) {
-          e.target.parentNode.lastChild.style.display = 'block'
-        //   console.log(e.target.parentNode.lastChild)
-      },
-      addFalse(e) {
-          e.preventDefault()
-          e.target.parentNode.parentNode.parentNode.style.display = 'none'
-        //   console.log(e.target.parentNode.parentNode.style.display = 'none')
-      },
+    //   addClassItem(e) {
+    //       e.target.parentNode.lastChild.style.display = 'block'
+    //     //   console.log(e.target.parentNode.lastChild)
+    //   },
+    //   addFalse(e) {
+    //       e.preventDefault()
+    //       e.target.parentNode.parentNode.parentNode.style.display = 'none'
+    //     //   console.log(e.target.parentNode.parentNode.style.display = 'none')
+    //   },
     //   submitMessage(e) {
     //       console.log(e)
     //   },
@@ -67,122 +72,122 @@ export default {
             width: 100%;
             height: 100%;
         }
-        .addbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 999;
-            background-color: rgba(0, 0, 0, .5);
-            display: none;
-            .addClass {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%,-50%);
-                width: 600px;
-                height: 350px;
-                // border-radius: 20px;
-                background-color: #fff;
-                padding: 15px;
-                form {
-                    text-align: left;
-                    font-size: 14px;
-                    h3 {
-                        text-align: left;
-                        font-weight: 700;
-                    }
-                    label {
-                        display: flex;
-                        span {
-                            line-height: 20px;
-                            padding-top: 24px;
-                            margin-right: 2px;
-                            color: #f00;
-                        }
-                        input[type='text'] {
-                            border: 0px;
-                            width: 100%;
-                            margin-top: 20px;
-                            margin-bottom: 30px;
-                            &:focus {
-                                outline: none;
-                            }
-                            border-bottom: 1px solid green;
-                        }  
-                    }
+        // .addbox {
+        //     position: fixed;
+        //     top: 0;
+        //     left: 0;
+        //     right: 0;
+        //     bottom: 0;
+        //     z-index: 999;
+        //     background-color: rgba(0, 0, 0, .5);
+        //     display: none;
+        //     .addClass {
+        //         position: absolute;
+        //         top: 50%;
+        //         left: 50%;
+        //         transform: translate(-50%,-50%);
+        //         width: 600px;
+        //         height: 350px;
+        //         // border-radius: 20px;
+        //         background-color: #fff;
+        //         padding: 15px;
+        //         form {
+        //             text-align: left;
+        //             font-size: 14px;
+        //             h3 {
+        //                 text-align: left;
+        //                 font-weight: 700;
+        //             }
+        //             label {
+        //                 display: flex;
+        //                 span {
+        //                     line-height: 20px;
+        //                     padding-top: 24px;
+        //                     margin-right: 2px;
+        //                     color: #f00;
+        //                 }
+        //                 input[type='text'] {
+        //                     border: 0px;
+        //                     width: 100%;
+        //                     margin-top: 20px;
+        //                     margin-bottom: 30px;
+        //                     &:focus {
+        //                         outline: none;
+        //                     }
+        //                     border-bottom: 1px solid green;
+        //                 }  
+        //             }
                     
-                    .formbody {
-                        display: flex;
-                        label {
-                            display: flex;
-                            color: #000;
-                            span {
-                                padding-top: 0px;
-                                color: #000;
-                            }
-                            div {
-                                width: 240px;
-                                height: 135px;
-                                background-image: url('../../assets/upload1.png');
-                                border: 1px dotted #000;
-                                input {
-                                    width: 100%;
-                                    height: 100%;
-                                    opacity: 0;
-                                }
-                            }
-                        }
-                        .inputnode {
-                            flex: 1;
-                            margin-left: 20px;
-                            p {
-                                padding-left: 10px;
-                                &::first-letter {
-                                    margin-left: -5px;
-                                    // color: #f00;
-                                }
-                                &::before {
-                                    content: '*';
-                                    color: orange;
-                                    font-size: 20px;
-                                    line-height: 20px;
-                                    vertical-align: middle;
-                                    margin-left: -10px;
-                                }
-                                // span {
-                                //     width: 20px;
-                                //     height: 20px;
-                                //     display: inline-block;
-                                //     vertical-align: middle;
-                                //     text-align: center;
-                                //     line-height: 20px;
-                                //     font-size: 25px;
-                                //     color: orange;
-                                // }
-                            }
-                        }
-                    }
-                    button {
-                        border: 0;
-                        background-color: #eee;
-                        line-height: 40px;
-                        padding: 0px 25px;
-                        border-radius: 5px;
-                        margin: 25px 10px 0px 0px;
-                        float: right;
-                        &:focus {
-                            outline: none;
-                        }
-                        &.addTrue {
-                            background-color: rgb(1, 123, 131);
-                            color: #fff;
-                        }
-                    }
-                }
-            }
-        }
+        //             .formbody {
+        //                 display: flex;
+        //                 label {
+        //                     display: flex;
+        //                     color: #000;
+        //                     span {
+        //                         padding-top: 0px;
+        //                         color: #000;
+        //                     }
+        //                     div {
+        //                         width: 240px;
+        //                         height: 135px;
+        //                         background-image: url('../../assets/upload1.png');
+        //                         border: 1px dotted #000;
+        //                         input {
+        //                             width: 100%;
+        //                             height: 100%;
+        //                             opacity: 0;
+        //                         }
+        //                     }
+        //                 }
+        //                 .inputnode {
+        //                     flex: 1;
+        //                     margin-left: 20px;
+        //                     p {
+        //                         padding-left: 10px;
+        //                         &::first-letter {
+        //                             margin-left: -5px;
+        //                             // color: #f00;
+        //                         }
+        //                         &::before {
+        //                             content: '*';
+        //                             color: orange;
+        //                             font-size: 20px;
+        //                             line-height: 20px;
+        //                             vertical-align: middle;
+        //                             margin-left: -10px;
+        //                         }
+        //                         // span {
+        //                         //     width: 20px;
+        //                         //     height: 20px;
+        //                         //     display: inline-block;
+        //                         //     vertical-align: middle;
+        //                         //     text-align: center;
+        //                         //     line-height: 20px;
+        //                         //     font-size: 25px;
+        //                         //     color: orange;
+        //                         // }
+        //                     }
+        //                 }
+        //             }
+        //             button {
+        //                 border: 0;
+        //                 background-color: #eee;
+        //                 line-height: 40px;
+        //                 padding: 0px 25px;
+        //                 border-radius: 5px;
+        //                 margin: 25px 10px 0px 0px;
+        //                 float: right;
+        //                 &:focus {
+        //                     outline: none;
+        //                 }
+        //                 &.addTrue {
+        //                     background-color: rgb(1, 123, 131);
+        //                     color: #fff;
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
     }
 </style>
 <style lang="css">
