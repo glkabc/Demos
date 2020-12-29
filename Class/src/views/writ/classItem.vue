@@ -4,8 +4,7 @@
       <img v-else src="../../assets/upload.png" alt="图片描述">
       <div class="footer">
         <!-- <p>{{item.name}}<img src="../../assets/change.png" alt="图标" @click="changeItem"></p> -->
-        <p>{{item.name}}<a-icon type="edit" @click="changeItem"/></p>
-        
+        <p>{{item.name}}<a-icon type="edit" @click="changeItem" style="font-size:20px;"/></p>
       </div>
       <div id="addbox">
           <div class="addClass">
@@ -13,7 +12,8 @@
                   <h3>新建课程</h3>
                   <label for="text">
                       <span>*</span>
-                      <input type="text" placeholder="请输入课程名称" id="text" :value="item.name">
+                      <!-- <input type="text" placeholder="请输入课程名称" id="text" :value="item.name"> -->
+                      <input type="text" placeholder="请输入课程名称" id="text" v-model="inputValue">
                   </label>
                   <div class="formbody">
                      <label for="file">
@@ -44,18 +44,25 @@ export default {
   props: {
       item: Object
   },
-  components: {
-    // AddBox
-  },
   data() {
     return {
-        upoladImagType: 200
+        inputValue: '',
+        upoladImagType: 200,
+        updataClassData: null
     }
+  },
+  mounted() {
+      this.inputValue = this.item.name
   },
   methods: {
     changeItem(e) {
-      e.target.parentNode.parentNode.parentNode.parentNode.lastChild.style.display = 'block'
-      // console.log(e.target.parentNode.parentNode.parentNode.lastChild)
+        // console.log(e.target)
+        if (e.target.getAttribute('data-icon') === 'edit') {
+            // console.log(111)
+            e.target.parentNode.parentNode.parentNode.parentNode.lastChild.style.display = 'block'
+        } else if (e.target.parentNode.getAttribute('data-icon') === 'edit') {
+            e.target.parentNode.parentNode.parentNode.parentNode.parentNode.lastChild.style.display = 'block'
+        }
     },
     addFalse(e) {
           e.preventDefault()
@@ -63,27 +70,55 @@ export default {
         //   console.log(e.target.parentNode.parentNode.style.display = 'none')
     },
     UpDateImg(e) {
+        const formData = new FormData();
         let ImgFile = e.target.files[0]
-        // alert(ImgFile.name)
-        Axios.post('/uploadFile', {
-            data: {
-               file: ImgFile,
-                uploadType: 1 
-            } 
-        }).then(res => {
-            // console.log(res.data.data.data)
-            let data = res.data.data.data
-            this.$refs.setBgcImg.style.backgroundImage = `url(${data.url})`
-            // console.log(this.$refs.setBgcImg.style.backgroundImage)
-        }).catch(err => {
-            this.upoladImagType = err.response.status
-        })
+        if (ImgFile.size / 1024 < 4 * 1024) {
+            formData.append('file', ImgFile);
+            formData.append('uploadType', 1)
+            // alert(ImgFile.name)
+            Axios.post('/uploadFile', {
+                data: formData
+            }).then(res => {
+                // console.log(res.data.data.data)
+                let data = res.data.data.data
+                this.$refs.setBgcImg.style.backgroundImage = `url(${data.url})`
+                this.updataClassData = data
+                // console.log(this.$refs.setBgcImg.style.backgroundImage)
+            }).catch(err => {
+                this.upoladImagType = err.response.status
+            })
+        } else {
+            alert('图片过大!!!')
+        }
+        
     },
 
     changeClass(e) {
         e.preventDefault()
-        console.log('提交了数据')
-        
+        console.log(this.item)
+        // console.log(this.updataClassData)
+        if (this.inputValue) {
+            Axios.get('/course/updateCourse', {
+                params: {
+                    id: this.item.id,//（课程id）
+                    imgfileId: this.updataClassData !== null ?  this.updataClassData.id : this.item.imgfileId,//（上传文件的id）
+                    name: this.inputValue//(课程名称)
+                }
+            }).then(res => {
+                // console.log(res)
+                this.$emit('addClassItemOne', {
+                //   id: Math.floor(Math.random()*10000),
+                  name: this.inputValue,
+                  imgfileId: this.updataClassData !== null ?  this.updataClassData.id : this.item.imgfileId,
+                  createType: this.item.createType,
+                  imgUrl: this.updataClassData !== null ? this.updataClassData.url : this.item.imgfileId
+                })
+                e.target.parentNode.parentNode.parentNode.style.display =  'none'
+                this.$message.success('修改成功')
+            })
+        } else {
+            this.$message.error('课程名不能为空！！！')
+        }
     }
   }
 }
@@ -91,24 +126,23 @@ export default {
 
 <style scoped lang="scss">
     .classitem {
-        width: 215px;
-        // width: 100%;
+        // width: 215px;
+        width: 100%;
         background-color: #eee;
         height: 199px;
-        margin: 20px;
+        // height: 100%;
+        // margin: 20px;
         position: relative;
         // z-index: 10;
         transition: box-shadow 0.5s;
         &:hover {
-          box-shadow: 0 0 10px #666;    
+          box-shadow: 0 0 15px #666;    
         }
         img {
-          width: 215px;
-          height: 199px;
-            // display: none;
-            // &:hover {
-            //   display: block;
-            // }
+        //   width: 215px;
+          width: 100%;
+        //   height: 199px;
+          height: 100%;
         }
         .footer {
           height: 50px;
@@ -123,10 +157,10 @@ export default {
             margin: 0;
             i {
               position: absolute;
-              bottom: 8px;
-              right: 10px;
-              width: 25px;
-              height: 25px;
+              bottom: 15px;
+              right: 15px;
+              width: 20px;
+              height: 20px;
               display: none;
               opacity: 0;
               transition: opacity,display 0.5s;

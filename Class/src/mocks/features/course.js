@@ -6,6 +6,7 @@ export const handlers = [
     rest.get(`/classMessage`, (req, res, ctx) => {
         // console.log(req)
         return res(
+            ctx.delay(2000),
             ctx.status(200),
             ctx.json({
                 code: 0,
@@ -14,7 +15,7 @@ export const handlers = [
                     "mesg": "success",
                     "data": {
                      "meta": {
-                      "total": 2,
+                      "total": 42,
                       "pageSize": 14,
                       "pageNum": 1
                      },
@@ -32,19 +33,6 @@ export const handlers = [
                       "createType": "2",
                       "imgUrl": "http://47.99.96.51:9992/downloadfile/2020-12/863c8ddf-96e4-49a4-b000-6cdbe91f7878.jfif"
                      },{ 
-                        "id": 2128,
-                        "name": "ewre",
-                        "imgfileId": null,
-                        "createType": "2",
-                        "imgUrl": null
-                       }, {
-                        
-                        "id": 2042,
-                        "name": "我叫尚九熙",
-                        "imgfileId": "842",
-                        "createType": "2",
-                        "imgUrl": "http://47.99.96.51:9992/downloadfile/2020-12/863c8ddf-96e4-49a4-b000-6cdbe91f7878.jfif"
-                       },{ 
                         "id": 2128,
                         "name": "ewre",
                         "imgfileId": null,
@@ -150,4 +138,18 @@ export const handlers = [
             })
         );
     }),
+    rest.get('/course/updateCourse', (req, res, ctx) => {
+        return res(
+            ctx.status(200),
+            ctx.json({
+                code: 0,
+                data: {
+                    "code":0,
+                    "mesg":"success",
+                    "data":"课程修改成功"
+                    },
+                mesg: 'success',
+            })
+        );
+    })
 ];

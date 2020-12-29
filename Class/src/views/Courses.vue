@@ -21,12 +21,15 @@
 </script>
 
 <style lang="scss" scoped>
-  #Footer {
-    text-align: center;
-    margin-bottom: 15px;
-    // position: absolute;
-    // left: 50%;
-    // bottom: 20px;
-    // transform: translateX(-50%);
+  .container {
+    #Footer {
+      text-align: center;
+      margin-bottom: 15px;
+      // position: absolute;
+      // left: 50%;
+      // bottom: 20px;
+      // transform: translateX(-50%);
+    }
   }
+  
 </style>
