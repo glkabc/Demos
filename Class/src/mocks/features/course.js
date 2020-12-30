@@ -6,7 +6,7 @@ export const handlers = [
     rest.get(`/classMessage`, (req, res, ctx) => {
         // console.log(req)
         return res(
-            ctx.delay(2000),
+            ctx.delay(1000),
             ctx.status(200),
             ctx.json({
                 code: 0,
@@ -106,6 +106,7 @@ export const handlers = [
     }),
     rest.post(`/uploadFile`, (req, res, ctx) => {
         return res(
+            ctx.delay(2000),
             ctx.status(200),
             ctx.json({
                 code: 0,

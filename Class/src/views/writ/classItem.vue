@@ -6,21 +6,22 @@
         <!-- <p>{{item.name}}<img src="../../assets/change.png" alt="图标" @click="changeItem"></p> -->
         <p>{{item.name}}<a-icon type="edit" @click="changeItem" style="font-size:20px;"/></p>
       </div>
-      <div id="addbox">
+      <div id="addbox" ref="addoxShow">
           <div class="addClass">
               <form @submit="changeClass">
                   <h3>新建课程</h3>
                   <label for="text">
                       <span>*</span>
                       <!-- <input type="text" placeholder="请输入课程名称" id="text" :value="item.name"> -->
-                      <input type="text" placeholder="请输入课程名称" id="text" v-model="inputValue">
+                      <input type="text" autocomplete="off" placeholder="请输入课程名称" id="text" v-model="inputValue">
                   </label>
                   <div class="formbody">
                      <label for="file">
                           <span>设置封面：</span>
                           <div :style="item.imgUrl ? `background-image: url(${item.imgUrl})`: null" ref="setBgcImg">
+                              <img src="" alt="" ref="uploadingImg">
+                              <a-spin v-if="uploadingImgState"/>
                               <input id="file" type="file" accept=".png, .jpg, .jpeg" @change="UpDateImg">
-                              <!-- <img :src="item.imgUrl" alt=""> -->
                           </div>
                      </label>
                       <div class="inputnode">
@@ -48,7 +49,10 @@ export default {
     return {
         inputValue: '',
         upoladImagType: 200,
-        updataClassData: null
+        updataClassData: null,    // 更新后的图片信息
+        uploadingImgState: false, // 是否正在修改课程图片
+        cancel: null,
+        uploadingImged: false     // 是否已经修改课程图片
     }
   },
   mounted() {
@@ -66,37 +70,55 @@ export default {
     },
     addFalse(e) {
           e.preventDefault()
+          this.$refs.uploadingImg.src = ``
+          this.inputValue = this.item.name
+          this.$refs.uploadingImg.style.opacity = 0
+          this.uploadingImged = false // 确保每次图片都是未修改的
+          if (this.uploadingImgState) {
+             this.cancel() 
+          }
           e.target.parentNode.parentNode.parentNode.style.display = 'none'
-        //   console.log(e.target.parentNode.parentNode.style.display = 'none')
     },
     UpDateImg(e) {
         const formData = new FormData();
         let ImgFile = e.target.files[0]
+        e.target.value = ''
         if (ImgFile.size / 1024 < 4 * 1024) {
+            let CancelToken = Axios.CancelToken
+            let self = this
+            this.uploadingImgState = true  // 课程图片正在修改中
+            this.uploadingImged = true // 修改了课程图片
             formData.append('file', ImgFile);
             formData.append('uploadType', 1)
             // alert(ImgFile.name)
             Axios.post('/uploadFile', {
                 data: formData
+            }, {
+                cancelToken: new CancelToken(function executor(c) {
+                    self.cancel = c
+                })
             }).then(res => {
                 // console.log(res.data.data.data)
-                let data = res.data.data.data
-                this.$refs.setBgcImg.style.backgroundImage = `url(${data.url})`
-                this.updataClassData = data
+                this.uploadingImgState = false
+                if (this.$refs.addoxShow.style.display === 'block'){
+                    let data = res.data.data.data
+                    this.$refs.uploadingImg.src = `${data.url}`
+                    this.$refs.uploadingImg.style.opacity = 1
+                    this.updataClassData = data
+                }
                 // console.log(this.$refs.setBgcImg.style.backgroundImage)
             }).catch(err => {
-                this.upoladImagType = err.response.status
+                this.uploadingImgState = false
+                if (err.response) {
+                  this.upoladImagType = err.response.status  
+                }
             })
         } else {
-            alert('图片过大!!!')
+            this.$message.warning('图片过大!!!')
         }
         
     },
-
-    changeClass(e) {
-        e.preventDefault()
-        console.log(this.item)
-        // console.log(this.updataClassData)
+    commitChangeClass(e) {
         if (this.inputValue) {
             Axios.get('/course/updateCourse', {
                 params: {
@@ -113,12 +135,32 @@ export default {
                   createType: this.item.createType,
                   imgUrl: this.updataClassData !== null ? this.updataClassData.url : this.item.imgfileId
                 })
-                e.target.parentNode.parentNode.parentNode.style.display =  'none'
                 this.$message.success('修改成功')
+                e.target.parentNode.parentNode.parentNode.style.display =  'none' 
+            }).catch (err => {
+                this.$message.error('课程修改失败！！！')
             })
         } else {
-            this.$message.error('课程名不能为空！！！')
+            this.$message.warning('课程名不能为空！！！')
         }
+    },
+    changeClass(e) {
+        e.preventDefault()
+        // console.log(this.item)
+        // console.log(this.updataClassData)
+        // 判断是否修改过课程图片，未修改直接提交， 已修改 要判断是否修改成功
+        if (!this.uploadingImged && this.inputValue === this.item.name) {
+            this.$message.warning('你什么都未修改！！！')
+        }else if (this.uploadingImged) {
+            if (this.updataClassData !== null) {
+                this.commitChangeClass(e)
+            } else {
+                this.$message.warning('网络较差封面还未加载成功！！！')
+            }
+        } else {
+            this.commitChangeClass(e)
+        }
+        
     }
   }
 }
@@ -126,23 +168,18 @@ export default {
 
 <style scoped lang="scss">
     .classitem {
-        // width: 215px;
         width: 100%;
         background-color: #eee;
         height: 199px;
-        // height: 100%;
-        // margin: 20px;
         position: relative;
-        // z-index: 10;
-        transition: box-shadow 0.5s;
+        transition: all 0.5s;
         &:hover {
-          box-shadow: 0 0 15px #666;    
+          box-shadow: 0 0 15px #666;
+        //   transform: scale(1.1, 1.1);
         }
         img {
-        //   width: 215px;
           width: 100%;
-        //   height: 199px;
-          height: 100%;
+          height: 149px;
         }
         .footer {
           height: 50px;
@@ -237,7 +274,30 @@ export default {
                                 background-repeat: no-repeat;
                                 background-size: 100% 100%;
                                 border: 1px dotted #000;
+                                position: relative;
+                                .ant-spin {
+                                    position: absolute;
+                                    top: 50%;
+                                    left: 50%;
+                                    transform: translate(-50%,-50%);
+                                    padding-top: 60px;
+                                    width: 100%;
+                                    height: 100%;
+                                    border: 0;
+                                    background-image: unset;
+                                }
+                                img {
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    width: 100%;
+                                    height: 100%;
+                                    opacity: 0;
+                                }
                                 input {
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
                                     width: 100%;
                                     height: 100%;
                                     opacity: 0;

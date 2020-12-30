@@ -2,6 +2,7 @@
   <div class="container" v-if="message.list.length > 0">
       <AddClass @addClassItemOne="addClassItemOne" v-show="meta.pageNum === 1"/>
       <ClassItem @addClassItemOne="addClassItemOne"  v-for="(item,index) in message.list" :item='item' :key="index"/>
+      <ADDBOX/>
       <div id="leftAndRight" v-if="meta.total > 14">
           <div class="left" @click="DownPageOne" v-show="meta.pageNum > 1">
               <!-- <img src="../../assets/prev.png" alt="上一页"> -->
@@ -27,6 +28,7 @@ import Axios from 'axios'
 import AddClass from './addClass'
 import ClassItem from './classItem'
 import RequestStatus from './requesStatus'
+import ADDBOX from './AddBox'
 export default {
   name:  'MyCreation',
   data() {
@@ -61,7 +63,8 @@ export default {
   components: {
       AddClass,
       ClassItem,
-      RequestStatus
+      RequestStatus,
+      ADDBOX
   },
   watch: {
       $route: {
@@ -82,14 +85,14 @@ export default {
             this.getNextPageData = false  // 暂时性不能请求下条数据
             Axios.get('/classMessage', {
                 params: {
-                    createType: this.createType,//（1.我创作的 2.我实战的）
-                    pageNum: this.meta.pageNum,//（当前页码）
-                    pageSize: this.meta.pageSize//（每页的数据）
+                    createType: this.createType, //（1.我创作的 2.我实战的）
+                    pageNum: this.meta.pageNum,  //（当前页码）
+                    pageSize: this.meta.pageSize //（每页的数据）
                 }
             }).then((res) => {
                 // console.log(res.data.data.data)
-                this.getDatasLodaing = false // 修改状态为请求数据结束
-                this.getNextPageData = true  // 数据请求成功，可以继续请求下一页数据
+                this.getDatasLodaing = false     // 修改状态为请求数据结束
+                this.getNextPageData = true      // 数据请求成功，可以继续请求下一页数据
                 this.message.list = res.data.data.data.courseList
                 this.meta = res.data.data.data.meta
                 // console.log(this.message)
@@ -101,7 +104,7 @@ export default {
                 // alert('数据请求失败')
             })
         } else {
-            this.$message.error('暂时无法请求数据')
+            this.$message.warning('网络过慢，数据请求较慢！！！')
         }
       },
       UpPageOne() {
@@ -169,6 +172,9 @@ export default {
     }
     .containers {
         text-align: center;
+        .ant-spin {
+            margin-top: 100px;
+        }
         #noClass {
             margin-top: 515px;
             transform: translateY(-100%);
