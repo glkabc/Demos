@@ -39,9 +39,13 @@
 </template>
 
 <script>
-import Axios from 'axios'
+import axios from 'axios'
+import Axios from '@/configs/request';
 export default {
   name:  'AddClass',
+  props: {
+      typeCreate: Number,
+  },
   data() {
     return {
         addClassData: null,
@@ -51,6 +55,9 @@ export default {
         uploadingImgState: false,
         cancel: null
     }
+  },
+  mounted() {
+      this.createType = this.typeCreate
   },
   methods: {
       addClassItem() {
@@ -63,6 +70,7 @@ export default {
           this.ClassName = ''
           this.$refs.uploadingImg.src = ``
           this.$refs.uploadingImg.style.opacity = 0
+          this.addClassData = null
           if (this.uploadingImgState) {
               this.cancel()
           }
@@ -74,16 +82,14 @@ export default {
         let ImgFile = e.target.files[0]
         e.target.value = ''
         if (ImgFile.size / 1024 <= 4 * 1024) {
-            let CancelToken = Axios.CancelToken
+            let CancelToken = axios.CancelToken
             let self = this
             this.uploadingImgState = true  // 请求图片当中
+            // console.log(ImgFile)
             fromData.append('file', ImgFile)
-            // console.log(fromData.get('file'))
             fromData.append('uploadType', 1)
             // alert(ImgFile.name)
-            Axios.post('/uploadFile', {
-                data: fromData
-            }, {
+            Axios.post('/upload', fromData, {
                 cancelToken: new CancelToken(function executor(c) {
                     self.cancel = c
                     //console.log(c)
@@ -94,7 +100,7 @@ export default {
                 // console.log(res)
                 this.uploadingImgState = false
                 if (this.$refs.addoxShow.style.display === 'block') {
-                    let data = res.data.data.data
+                    let data = res.data.data
                     this.$refs.uploadingImg.src = `${data.url}`
                     this.$refs.uploadingImg.style.opacity = 1
                     this.addClassData = data
@@ -112,14 +118,14 @@ export default {
       },
       AddClassSubmit(e) {
           e.preventDefault()
-          if (this.ClassName != '' && this.addClassData !== null) {
-            Axios.get('/course/addCourse', {
-                params: {
-                    createType: this.createType.toString,  //（1-我创作的   2-我实践的）
+          if (this.ClassName.trim() != '' && this.addClassData !== null) {
+            Axios.post('/course/addCourse', {
+                // params: {
+                    createType: this.createType,  //（1-我创作的   2-我实践的）
                     imgfileId: this.addClassData.id,  //（上传图片返回的图片id）
                     name: this.ClassName,     //（课程名字）
                     source: 1        //（/*来源 2:博思  1:备课家*/）
-                }
+                // }
             }).then(res => {
                 //   console.log(res)
                 this.$emit('addClassItemOne', {

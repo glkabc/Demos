@@ -44,7 +44,7 @@ const routes = [
           type: 2
         },
         name: '我的实战',
-        component: () => import('../views/writ/myCreation.vue')//() => import('../views/writ/myCombat')
+        component: () => import('../views/writ/myCombat')
       }
     ]
   },

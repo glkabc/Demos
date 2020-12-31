@@ -1,5 +1,5 @@
 <template>
-      <div class="addbox" ref="addoxShow" v-show="ShowOrHidden">
+      <div class="addbox" ref="addoxShow" v-if="ShowOrHidden">
           <div class="addClass">
               <form @submit="AddClassSubmit" action="/course/addCourse">
                   <h3>新建课程</h3>
@@ -11,7 +11,7 @@
                      <label for="file">
                           <span>设置封面：</span>
                           <div :style="ClassItem != null ? `background-image: (${ClassItem.imgUrl})` : null">
-                              <img src="../../assets/upload1.png" alt="" ref="uploadingImg">
+                              <img :src="uploadImageData == null ? null : uploadImageData.url" alt="" ref="uploadingImg" :style="{opacity: uploadImageData == null ? 0 : 1}">
                               <a-spin v-show="uploadingImgState"/>
                               <input id="file" type="file" accept=".png, .jpg, .jpeg" @change="upLoadingImg">
                           </div>
@@ -30,7 +30,8 @@
 </template>
 
 <script>
-import Axios from 'axios'
+import axios from 'axios'
+import Axios from '@/configs/request';
 export default {
   name:  'AddBox',
   props: {
@@ -38,8 +39,8 @@ export default {
        * ClassItem : {
        *    id: 2020,
        *    name: '我叫小明',
-       *    imgfileId: '3333',
-       *    createType: '2',
+       *    imgfileId: 3333,
+       *    createType: 2,
        *    imgUrl: 'url'
        * }
        */
@@ -74,39 +75,39 @@ export default {
               this.cancel()
           }
           this.ClassName = this.ClassItem != null ?  this.ClassItem.name : ''
-          this.$refs.uploadingImg.src = ''
-          this.$refs.uploadingImg.style.opacity = 0
+        //   this.$refs.uploadingImg.src = ''
+        //   this.$refs.uploadingImg.style.opacity = 0
+          this.uploadImageData = null
           this.$message.success('关闭此窗口') 
       },
       async upLoadingImg(e) {
           this.uploadingImgState = true
 
-          let CancelToken = Axios.CancelToken
-          let that = this
+          let CancelToken = axios.CancelToken
           let ImgFile = e.target.files[0]
+          e.target.value = ''
           if (ImgFile.size / 1024 > 4 * 1024) {
-              this.$message.warning('图片最大4M！！！')
+              this.$message.warning('图片最大4M!!!')
               return;
           }
           let fromData = new FormData()
-          e.target.value = ''
           
           fromData.append('file', ImgFile)
           fromData.append('uploadType', 1)
 
           try {
-              let res = await Axios.post('/uploadFile', {data: fromData}, {
-                  cancelToken: new CancelToken(function executor(c) {
-                      that.cancel = c
+              let res = await Axios.post('/upload', fromData, {
+                  cancelToken: new CancelToken((c) => {
+                      this.cancel = c
                   })
               })
               this.uploadImageData = res.data.data.data
-              this.$refs.uploadingImg.style.opacity = 1
-              this.$refs.uploadingImg.src = this.uploadImageData.url
+            //   this.$refs.uploadingImg.style.opacity = 1
+            //   this.$refs.uploadingImg.src = this.uploadImageData.url
               this.uploadingImgState = false
               this.$message.success('图片上传成功')
           } catch (err) {
-              this.$message.error(err)
+              this.$message.error('图片上传失败!!!')
           }
           
       },
@@ -126,15 +127,28 @@ export default {
           }
           
           try {
-              let ress = await Axios.get('/course/addCourse', {
-                  createType: this.ClassItem.createType, //（1-我创作的   2-我实践的）
-                  imgfileId: this.uploadImageData.id,    //（上传图片返回的图片id）
-                  name: this.ClassName,                  //（课程名字）
-                  source: 1                              //（/*来源 2:博思  1:备课家*/）
-              })
-              this.$message.success('添加成功')
+              if (this.ClassItem == null) {
+                  let ress = await Axios.post('/course/addCourse', {
+                        createType: this.$route.params.type == null ? 1 : this.$route.params.type, //（1-我创作的   2-我实践的）
+                        imgfileId: this.uploadImageData.id,                                        //（上传图片返回的图片id）
+                        name: this.ClassName,                                                      //（课程名字）
+                        source: 1                                                                  //（/*来源 2:博思  1:备课家*/）                          
+                  })
+                  this.$message.success('添加成功')
+              } else {
+                  let ChangeClassRes = await Axios.post('/course/updateCourse', {
+                        id: this.ClassItem.id,                                                                       //（课程id）
+                        imgfileId: this.uploadImageData == null ? this.ClassItem.imgUrl : this.uploadImageData.url,  //（上传文件的id）
+                        name: this.ClassName                                                                         //(课程名称)
+                  })
+                  this.$message.success('修改成功')
+              }
+              this.ClassName = ''
+              this.uploadImageData = null
+              this.$message.success('此窗口关闭')
           } catch (err) {
-              this.$message.error('添加操作未完成！！！！')
+            //   console.log(err)
+              this.$message.error('出现错误！！！')
           }
       }
   }

@@ -1,7 +1,7 @@
 <template>
   <div class="classitem">
-      <img v-if="item.imgUrl != null" :src="item.imgUrl" alt="图片描述" :id="item.imgfileId">
-      <img v-else src="../../assets/upload.png" alt="图片描述">
+      <img v-if="item.imgUrl != null" :src="item.imgUrl" alt="课程图片" :id="item.imgfileId">
+      <img v-else src="../../assets/upload.png" alt="课程图片">
       <div class="footer">
         <!-- <p>{{item.name}}<img src="../../assets/change.png" alt="图标" @click="changeItem"></p> -->
         <p>{{item.name}}<a-icon type="edit" @click="changeItem" style="font-size:20px;"/></p>
@@ -9,7 +9,7 @@
       <div id="addbox" ref="addoxShow">
           <div class="addClass">
               <form @submit="changeClass">
-                  <h3>新建课程</h3>
+                  <h3>修改课程</h3>
                   <label for="text">
                       <span>*</span>
                       <!-- <input type="text" placeholder="请输入课程名称" id="text" :value="item.name"> -->
@@ -18,8 +18,8 @@
                   <div class="formbody">
                      <label for="file">
                           <span>设置封面：</span>
-                          <div :style="item.imgUrl ? `background-image: url(${item.imgUrl})`: null" ref="setBgcImg">
-                              <img src="" alt="" ref="uploadingImg">
+                          <div :style="`background-image: url('${item.imgUrl}')`" ref="setBgcImg">
+                              <img :src="item.imgUrl ? `${item.imgUrl}`: null" alt="课程图片" ref="uploadingImg">
                               <a-spin v-if="uploadingImgState"/>
                               <input id="file" type="file" accept=".png, .jpg, .jpeg" @change="UpDateImg">
                           </div>
@@ -39,11 +39,13 @@
 </template>
 
 <script>
-import Axios from 'axios'
+import axios from 'axios'
+import Axios from '@/configs/request';
 export default {
   name:  'ClassItem',
   props: {
-      item: Object
+      item: Object,
+      typeCreate: Number
   },
   data() {
     return {
@@ -70,8 +72,9 @@ export default {
     },
     addFalse(e) {
           e.preventDefault()
-          this.$refs.uploadingImg.src = ``
           this.inputValue = this.item.name
+        //   if ()
+          this.$refs.uploadingImg.src = ``
           this.$refs.uploadingImg.style.opacity = 0
           this.uploadingImged = false // 确保每次图片都是未修改的
           if (this.uploadingImgState) {
@@ -84,16 +87,14 @@ export default {
         let ImgFile = e.target.files[0]
         e.target.value = ''
         if (ImgFile.size / 1024 < 4 * 1024) {
-            let CancelToken = Axios.CancelToken
+            let CancelToken = axios.CancelToken
             let self = this
             this.uploadingImgState = true  // 课程图片正在修改中
             this.uploadingImged = true // 修改了课程图片
             formData.append('file', ImgFile);
             formData.append('uploadType', 1)
             // alert(ImgFile.name)
-            Axios.post('/uploadFile', {
-                data: formData
-            }, {
+            Axios.post('/upload', formData, {
                 cancelToken: new CancelToken(function executor(c) {
                     self.cancel = c
                 })
@@ -101,7 +102,7 @@ export default {
                 // console.log(res.data.data.data)
                 this.uploadingImgState = false
                 if (this.$refs.addoxShow.style.display === 'block'){
-                    let data = res.data.data.data
+                    let data = res.data.data
                     this.$refs.uploadingImg.src = `${data.url}`
                     this.$refs.uploadingImg.style.opacity = 1
                     this.updataClassData = data
@@ -119,13 +120,13 @@ export default {
         
     },
     commitChangeClass(e) {
-        if (this.inputValue) {
-            Axios.get('/course/updateCourse', {
-                params: {
+        if (this.inputValue.trim()) {
+            Axios.post('/course/updateCourse', {
+                // params: {
                     id: this.item.id,//（课程id）
                     imgfileId: this.updataClassData !== null ?  this.updataClassData.id : this.item.imgfileId,//（上传文件的id）
                     name: this.inputValue//(课程名称)
-                }
+                // }
             }).then(res => {
                 // console.log(res)
                 this.$emit('addClassItemOne', {
@@ -174,8 +175,8 @@ export default {
         position: relative;
         transition: all 0.5s;
         &:hover {
-          box-shadow: 0 0 15px #666;
-        //   transform: scale(1.1, 1.1);
+          box-shadow: 0px 5px 15px #666;
+        //   transform: scale(1.02, 1.02);
         }
         img {
           width: 100%;
@@ -190,6 +191,7 @@ export default {
             text-align: center;
             background-color: #fff;
             line-height: 50px;
+            height: 50px;
             width: 100%;
             margin: 0;
             i {
@@ -292,7 +294,7 @@ export default {
                                     left: 0;
                                     width: 100%;
                                     height: 100%;
-                                    opacity: 0;
+                                    // opacity: 0;
                                 }
                                 input {
                                     position: absolute;

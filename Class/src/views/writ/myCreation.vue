@@ -1,8 +1,8 @@
 <template>
   <div class="container" v-if="message.list.length > 0">
-      <AddClass @addClassItemOne="addClassItemOne" v-show="meta.pageNum === 1"/>
-      <ClassItem @addClassItemOne="addClassItemOne"  v-for="(item,index) in message.list" :item='item' :key="index"/>
-      <ADDBOX/>
+      <AddClass :typeCreate='1' @addClassItemOne="addClassItemOne" v-show="meta.pageNum === 1"/>
+      <ClassItem :typeCreate='1' @addClassItemOne="addClassItemOne"  v-for="(item,index) in message.list" :item='item' :key="index"/>
+      <!-- <ADDBOX/> -->
       <div id="leftAndRight" v-if="meta.total > 14">
           <div class="left" @click="DownPageOne" v-show="meta.pageNum > 1">
               <!-- <img src="../../assets/prev.png" alt="上一页"> -->
@@ -24,11 +24,12 @@
 </template>
 
 <script>
-import Axios from 'axios'
+// import Axios from 'axios'
+import Axios from '@/configs/request';
 import AddClass from './addClass'
 import ClassItem from './classItem'
 import RequestStatus from './requesStatus'
-import ADDBOX from './AddBox'
+// import ADDBOX from './AddBox'
 export default {
   name:  'MyCreation',
   data() {
@@ -56,7 +57,8 @@ export default {
   },
   mounted() {
       this.createType = this.$route.params.type
-    //   console.log(this.$route)
+      console.log(this.$route.type)
+      this.message.list = []
       this.getDatasLodaing = true // 修改状态为请求数据中
       this.getMessage()
   },
@@ -64,7 +66,7 @@ export default {
       AddClass,
       ClassItem,
       RequestStatus,
-      ADDBOX
+    //   ADDBOX
   },
   watch: {
       $route: {
@@ -83,23 +85,31 @@ export default {
       getMessage() {
         if (this.getDatasLodaing && this.getNextPageData) {
             this.getNextPageData = false  // 暂时性不能请求下条数据
-            Axios.get('/classMessage', {
-                params: {
-                    createType: this.createType, //（1.我创作的 2.我实战的）
+            Axios.post('/course/getCourseList', {
+                // query: {
+                    createType: this.$route.params.type == null ? 1 : this.$route.params.type, //（1.我创作的 2.我实战的）
                     pageNum: this.meta.pageNum,  //（当前页码）
                     pageSize: this.meta.pageSize //（每页的数据）
-                }
+                // }
             }).then((res) => {
-                // console.log(res.data.data.data)
+                console.log(res)
                 this.getDatasLodaing = false     // 修改状态为请求数据结束
                 this.getNextPageData = true      // 数据请求成功，可以继续请求下一页数据
-                this.message.list = res.data.data.data.courseList
-                this.meta = res.data.data.data.meta
+                this.message.list = res.data.data.courseList
+                this.meta = res.data.data.meta
+                // this.meta.total = res.data.data.total
+                // this.meta.pageSize = res.data.data.pageSize
+                // this.meta.pageNum = res.data.data.pageNum
                 // console.log(this.message)
             }).catch (err => {
-                // console.log(err.response)
+                console.log(err)
                 this.getDatasLodaing = false
                 this.getNextPageData = true
+                if (err.response == null) {
+                    this.$message.error('网络错误，未请求到数据')
+                    // this.getStatus = 500
+                    return
+                }
                 this.getStatus = err.response.status
                 // alert('数据请求失败')
             })
@@ -110,13 +120,14 @@ export default {
       UpPageOne() {
           this.meta.pageNum = this.meta.pageNum + 1
           // 判断是否是第一页，如果不是请求数据条数增加一条
-          if (this.meta.pageNum > 1) this.meta.pageSize  = this.meta.pageSize + 1
+          if (this.meta.pageNum > 1) this.meta.pageSize  = 15
           this.message.list = [] // 清空数据重新请求
           this.getDatasLodaing = true 
           this.getMessage()
       },
       DownPageOne() {
           this.meta.pageNum = (this.meta.pageNum - 1) > 0 ? this.meta.pageNum - 1: 1
+          if (this.meta.pageNum === 1) this.meta.pageSize  = 14
           this.message.list = []
           this.getDatasLodaing = true 
           this.getMessage()
