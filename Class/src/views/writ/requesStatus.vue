@@ -12,7 +12,9 @@
 <script>
 export default {
   name:  'RequestStatus',
-  props: ['getStatus']
+  props: {
+    getStatus: Number
+  }
 }
 </script>
 

@@ -33,7 +33,7 @@ const routes = [
       {
         path: 'mycreation',
         params: {
-          type: null
+          type: 1
         },
         name: '我的创作',
         component: () => import('../views/writ/myCreation.vue')
@@ -41,7 +41,7 @@ const routes = [
       {
         path: 'mycombat',
         params: {
-          type: null
+          type: 2
         },
         name: '我的实战',
         component: () => import('../views/writ/myCombat')
