@@ -1,0 +1,99 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+html,
+body {
+  height: 100%;
+  background-color: #f1f2f6;
+}
+
+/* 阻止chrome/firefox 双指左右滑动前进后退页 */
+html,
+body {
+  overscroll-behavior-x: none;
+  overflow: auto;
+}
+
+/* 自定义滚动条 */
+* {
+  scrollbar-width: thin;
+  /* 下面的css会引起window下firefox scrollbar track上多出黑色边框, 83版测试有bug，bug会在85版被修复 */
+  /* scrollbar-color: rgba(0, 0, 0, 0.34) #fff; */
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*::-webkit-scrollbar {
+  width: 5px;
+  height: 12px;
+}
+*::-webkit-scrollbar-track {
+  background: #fff;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.34);
+  border-radius: 6px;
+  /* border: 3px solid #fff; */
+}
+/* // pagination */
+.ant-pagination-item {
+  min-width: 50px !important;
+  line-height: 32px !important;
+  border: none !important;
+}
+.ant-pagination-item-active a {
+  color: #fff !important;
+  background: #357981;
+  border-radius: 4px;
+}
+.ant-pagination-total-text {
+  line-height: 32px !important;
+}
+/* tabs */
+.ant-tabs-bar {
+  border-bottom: none !important;
+}
+/* progress */
+.ant-progress-inner {
+  background-color: transparent !important;
+  vertical-align: none !important;
+  border-radius: 0 !important;
+}
+.ant-progress-success-bg,
+.ant-progress-bg {
+  border-radius: none !important;
+  /* background-color:#febd00 !important; */
+  height: 29px !important;
+  border-radius: 0 !important;
+}
+.ant-progress-text {
+  color: #44ad8a;
+}
+.ant-row {
+  margin-top: -1px;
+}
+
+/* tabs */
+.ant-tabs-bar {
+  border-bottom: none !important;
+}
+/* dropdown menu */
+.ant-dropdown-menu-item:hover {
+  background-color: #ecf2f3;
+}
+.ant-select-dropdown-menu-item-active:not(.ant-select-dropdown-menu-item-disabled) {
+  background-color: #ecf2f3;
+}
+.ant-select-dropdown-menu-item:hover:not(.ant-select-dropdown-menu-item-disabled) {
+  background-color: #ecf2f3;
+}
