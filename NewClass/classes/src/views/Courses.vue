@@ -2,6 +2,9 @@
   <div class="container">
     <Navigation />
     <Home/>
+    <div id="Footer">
+      <span>Copyright &copy; 2008-2020 (V2.9) 科大讯飞教育</span>
+    </div>
   </div>
 </template>
 
@@ -18,5 +21,7 @@
 </script>
 
 <style lang="scss" scoped>
-
+  #Footer {
+    text-align: center;
+  }
 </style>

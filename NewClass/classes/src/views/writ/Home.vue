@@ -6,9 +6,6 @@
       <router-link :to="{name: '我的实战'}" id="rig"><i class="iconfont icon-beike1"></i> 我实战的</router-link>
     </div>
     <router-view></router-view>
-    <div id="Footer">
-      <span>Copyright &copy; 2008-2020.(V2.9) 科大讯飞教育</span>
-    </div>
   </div>
 </template>
 

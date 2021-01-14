@@ -1,11 +1,11 @@
 <template>
   <div class="addbox">
      <div class="addClass">
-         <form action="#" @submit="submitMessage">
+         <form action="#">
              <h3>新建课程</h3>
              <label for="text">
                  <span>*</span>
-                 <input type="text" placeholder="课程名称：" id="text" @change="updateImageDisplay">
+                 <input type="text" placeholder="课程名称：" id="text">
              </label>
              <div class="formbody">
                 <label for="file">
@@ -27,15 +27,24 @@
 <script>
 export default {
   name:  'AddBox',
+  props: {
+    addBoxShow: {
+        type: Boolean,
+        default() {
+            return true
+        }
+    }
+  },
   data() {
     return {
-
     }
   },
   methods: {
-      submitMessage() {},
-      updateImageDisplay() {},
-      addFalse() {},
+       addFalse(e) {
+          e.preventDefault()
+          e.target.parentNode.parentNode.parentNode.style.display = 'none'
+        //   console.log(e.target.parentNode.parentNode)
+      },
   }
 }
 </script>
@@ -45,12 +54,11 @@ export default {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            // height: 100%;
-            height: 800px;
-            z-index: 999;
+            right: 0;
+            bottom: 0;
+            z-index: 9999;
             background-color: rgba(0, 0, 0, .5);
-            display: none;
+            display: block;
             .addClass {
                 position: absolute;
                 top: 50%;
@@ -106,6 +114,7 @@ export default {
                                     width: 100%;
                                     height: 100%;
                                     opacity: 0;
+                                    cursor: pointer;
                                 }
                             }
                         }
@@ -126,16 +135,6 @@ export default {
                                     vertical-align: middle;
                                     margin-left: -10px;
                                 }
-                                // span {
-                                //     width: 20px;
-                                //     height: 20px;
-                                //     display: inline-block;
-                                //     vertical-align: middle;
-                                //     text-align: center;
-                                //     line-height: 20px;
-                                //     font-size: 25px;
-                                //     color: orange;
-                                // }
                             }
                         }
                     }
