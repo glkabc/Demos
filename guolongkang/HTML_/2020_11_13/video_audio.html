@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <video src="./video_and_audio/rabbit320.mp4" 
+            controls 
+            muted
+            width="240px"
+            height="120px">
+        <!-- <source src="./video_and_audio/rabbit320.mp4" type="vodei/mp4"> -->
+    </video>
+
+    <video controls
+            loop
+            poster="./assets//favorite-1_th.jpg"
+            preload="metadata">
+        <source src="./video_and_audio/rabbit320.mp4" type="video/mp4">
+            <!-- 字幕可以在IE上看到，谷歌我的看不到 -->
+        <track label="English" kind="subtitles" src="./subtitles_en.vtt" srclang="en" default>
+    </video>
+    <br>
+    <audio src="https://raw.githubusercontent.com/mdn/learning-area/master/html/multimedia-and-embedding/video-and-audio-content/viper.mp3" controls></audio>
+    <audio controls id="audio"
+            autoplay>
+        <source src="https://raw.githubusercontent.com/mdn/learning-area/master/html/multimedia-and-embedding/video-and-audio-content/viper.ogg" type="audio/ogg">
+        <source src="https://raw.githubusercontent.com/mdn/learning-area/master/html/multimedia-and-embedding/video-and-audio-content/viper.mp3" type="audio/mp3">
+        <p>你的浏览器不支持 HTML5 音频，可点击<a href="#">此链接</a>收听。</p>
+    </audio>
+
+    <script>
+        let mediaElem = document.getElementById("audio");
+        mediaElem.load();
+    </script>
+</body>
+</html>

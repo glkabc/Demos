@@ -1,0 +1,84 @@
+/* 导入其他css样式 */
+@import './styles2.css';
+
+p {
+    color: green;
+}
+
+h2 {
+    font-size: 25px;
+    background-color: #666;
+    color: black;
+    border: 2px solid yellow;
+}
+
+.outer {
+    border: 5px solid black;
+}
+
+.box {
+    padding: 10px;
+    width: calc(90% - 30px);
+    background-color: red;
+    color: white;
+}
+
+h1 + p {
+    font-size: 30px;
+}
+
+/* css属性的一些使用  */
+.box_1 {
+    margin: 40xp;
+    width: 100px;
+    height: 100px;
+    /* background-color: black; */
+    background-image: url(../../2020_11_13/assets/favorite-1.jpg);
+    color: white;
+    /* transform: rotate(0.4turn);  */
+    /* position: absolute;
+    top: 0;
+    left: 80%;
+    transform: translate(200px 200px); */
+    transform: translate3d(1,1,100);
+}
+
+/* 测试媒体查询 */
+@media (max-width: 500px) {
+    body {
+        background-color: green;
+    }
+}
+
+.container div {
+    padding: 20px;
+    font-size: 2em;
+    font-weight: 700;
+    color: white;
+    border: 5px dashed #000;
+    background-image: url(../../2020_11_16/images/timg_480+270.jpg);
+    background-repeat: repeat;
+    margin: 10px 0px;
+}
+.box_2 {
+    /* color: rgba(225,225,225,.1); */
+    background-clip: border-box;
+}
+.box_3 {
+    background-clip: padding-box;
+}
+.box_4 {
+    background-clip: content-box;
+}
+
+/* text 属性只有webkit内核的浏览器支持 */
+.box_5 {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.container .box_6 {
+    color: rgba(255, 255, 255,.6);
+}

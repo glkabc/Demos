@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/base.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h2>var 与 let 的区别</h2>
+        <ul>
+            <li><b>变量提升不适用于let</b> : 如果将下面例子中的 var 替换成 let 将不起作用并引起一个错误。</li>
+            <pre>
+myName = 'Chris';
+
+function logName() {
+  console.log(myName);
+}
+
+logName();
+
+var myName;</pre>
+            <li><b>var 可以在使用时多次声明相同名称的变量,但是let不行</b> :下面将会出错,但是换成var不会</li>
+            <pre class="danger">
+let myName = 'Chris';
+let myName = 'Bob';</pre>
+        </ul>
+        <h2>变量类型</h2>
+        <ul>
+            <li><b>Number</b></li>
+            <p>你可以在变量中存储数字，不论这些数字是像30（也叫整数）这样，或者像2.456这样的小数（也叫做浮点数）。</p>
+            <pre>let myAge = 14;</pre>
+            <li><b>String</b></li>
+            <p>字符串是文本的一部分。当你给一个变量赋值为字符串时，你需要用单引号或者双引号把值给包起来，否则JavaScript将会把这个字符串值理解成别的变量名。</p>
+            <pre>let str = '你好';</pre>
+            <li><b>Boolean</b></li>
+            <p>Boolean 的值有2种：true或false。它们通常被用于在适当的代码之后，测试条件是否成立。</p>
+            <pre>let runing = true;</pre>
+            <li><b>Array</b></li>
+            <p>数组是一个单个对象，其中包含很多值，方括号括起来，并用逗号分隔。</p>
+            <pre>let array = [1,2,3,4];</pre>
+            <li><b>Object</b></li>
+            <p>对象是现实生活中的模型的一种代码结构。</p>
+            <pre>
+let dog = { name : 'Spot', breed : 'Dalmatian' };
+dog.name</pre>
+        </ul>
+        <hr>
+        <h4>转译字符  <b> \ </b></h4>
+        <pre>let say = 'I \'am student.' <b>\</b> 符号使单纯缩写正确显示</pre>
+        
+    </div>
+</body>
+</html>

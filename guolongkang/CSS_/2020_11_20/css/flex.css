@@ -1,0 +1,59 @@
+.box_a {
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+    flex-direction: row-reverse;
+}
+
+.box_a div {
+    flex: 200px;
+    height: 100px;
+    margin: 10px;
+    padding: 10px;
+    overflow: hidden;
+    background-color: #ddd;
+}
+
+.box_b {
+    display: flex;
+    flex-flow: row wrap;
+}
+.box_b div {
+    flex: 200px;
+    height: 100px;
+    padding: 10px;
+    margin: 10px;
+    overflow: hidden;
+    background-color: #EEE;
+}
+
+.box_c {
+    display: flex;
+}
+
+.box_c article {
+    flex: 1 200px;
+    padding: 10px;
+    margin: 10px;
+    background-color: #999;
+}
+
+.box_c article:nth-of-type(3) {
+    flex: 2 200px;
+}
+
+.box_d {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.box_d button:first-child {
+    align-self: flex-end;
+    order: 1;
+}
+
+.box_d button:last-child {
+    align-self: flex-end;
+    order: -1;
+}

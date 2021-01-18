@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/base.css">
+    <title>background</title>
+    <style>
+        .container {
+            background-image: url('../2020_11_16/images/timg_960+540.jpg');
+            background-size: 100% 100%;
+            background-attachment:fixed;
+        }
+        .test1, .test2 {
+            width: 100%;
+            height: 800px;
+        }
+
+        .container p {
+            display: block;
+            background-color: #fff;
+            margin: 0;
+        }
+
+        .something {
+            background-color: #fff;
+            padding-bottom: 10px;
+        }
+        .contine2 {
+            background-image: url('../2020_11_16/Mozilla/red-panda_600.jpg');
+            background-attachment:fixed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="test1">
+            <div class="something">
+                <h2>附加背景</h2>
+                <p>另一个可供选择的背景是指定他们如何滚动时，内容滚动。这是由background-attachment属性控制的，它可以接受以下值:</p>
+                <ul>
+                    <li><b>sroll</b>:使元素的背景在页面滚动时滚动。如果滚动了元素内容，则背景不会移动。实际上，背景被固定在页面的相同位置，所以它会随着页面的滚动而滚动。</li>
+                    <li><b>fixed</b>:使元素的背景固定在视图端口上，这样当页面或元素内容滚动时，它就不会滚动。它将始终保持在屏幕上相同的位置。</li>
+                    <li><b>local</b>:这个值是后来添加的(它只在Internet Explorer 9+中受支持，而其他的在IE4+中受支持)，因为滚动值相当混乱，在很多情况下并不能真正实现您想要的功能。局部值将背景固定在设置的元素上，因此当您滚动元素时，背景也随之滚动。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container contine2">
+        <div class="test2">
+            <div class="something">
+                <h2>background 简写</h2>
+                <pre>
+background: url no-repeat position;</pre>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

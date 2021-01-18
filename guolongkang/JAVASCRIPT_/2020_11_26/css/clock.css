@@ -1,0 +1,31 @@
+.clock {
+    position: absolute;
+    left: 50%;
+    top: 100px;
+    transform: translate(-50%,-50%);
+    background-color: #eee;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.time {
+    text-align: center;
+}
+
+.button {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(100px, 1fr));
+    column-gap: 20px;
+}
+
+.button button {
+    border-radius: 5px;
+    border: 1px solid #000;
+    padding: 10px;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+button:hover {
+    background-color: rgb(185, 178, 178);
+}

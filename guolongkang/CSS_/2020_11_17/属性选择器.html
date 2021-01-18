@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 存否和值选择器 */
+        ul li[class='a'] {
+            color: red;
+        }
+        ul li[class] {
+            font-size: 25px;
+        }
+
+        ul li[class="a b"] {
+            background-color: #333;
+        }
+
+        ul li a[href="#"] {
+            color: green;
+        }
+
+        ul [style] {
+            font-size: 12px;
+        }
+
+        ul li[class|=a] {
+            font-size: 26px;
+        }
+        /* li[calss|="a"] {
+            font-size: 27px;
+        } */
+
+        /* 字符串选择器 */
+        ol li[class ^= "a"] {
+            color: green;
+        }
+
+        ol li[class $="b"] {
+            font-size: 26px;
+        }
+
+        ol li[class *= "a"] {
+            background-color: #999;
+        }
+    </style>
+</head>
+<body>
+    <h1>Attribute presence and value selectors</h1>
+    <h2 style="color: black;">h2</h2>
+    <ul>
+        <li>Item 1</li>
+        <li class="a">Item 2</li>
+        <li class="a b">Item 3</li>
+        <li class="ab">Item 4</li>
+        <li class="abc"><a href="#">Item 5</a></li>
+    </ul>
+    <hr>
+    <ol>
+        <li>Item 1</li>
+        <li class="a">Item 2</li>
+        <li class="a b">Item 3</li>
+        <li class="ab">Item 4</li>
+    </ol>
+
+    <p>如果想要在选择时大小写不区分,可以在选择的闭合括号前使用 <b>i</b> 值</p>
+    <pre>
+    例如:
+        ol li[class ^= "a" i] {
+            color: green;
+        }
+    </pre>
+</body>
+</html>

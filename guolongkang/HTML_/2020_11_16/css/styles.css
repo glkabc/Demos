@@ -1,0 +1,44 @@
+h1 {
+    color: red;
+}
+
+p {
+    color: green;
+}
+
+li {
+    list-style-type: "\1F44D";
+}
+
+/* .special {
+    color: orange;
+    font-weight: bold;
+} */
+
+/* 选中每个special类的li元素 */
+li.special {
+    color: orange;
+    font-weight: bold;
+}
+
+li em {
+    color: rebeccapurple;
+}
+
+h1 + p span {
+    color: red;
+}
+
+a:link {
+    color: pink;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+body h1 + p .special {
+    color: yellow;
+    background-color: black;
+    padding: 5px;
+}

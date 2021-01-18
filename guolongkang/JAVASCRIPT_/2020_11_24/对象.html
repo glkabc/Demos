@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/base.css">
+    <title>对象</title>
+</head>
+<body>
+    <div class="container">
+        <p>This example requires you to enter commands in your browser's JavaScript console (see <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools">What are browser developer tools</a> for more information).</p>
+    </div>
+    
+    <script>
+        // var person = {
+        //     name: {
+        //         first:'Bob',
+        //         last:'Smith'
+        //     },
+        //     age: 32,
+        //     gender: 'male',
+        //     interests: ['music','skiing'],
+        //     bio: function() {
+        //         alert(this.name[0] + ' ' + this.name[1] + ' is ' + this.age + ' years old. He likes ' + this.interests[0] + ' and ' + this.interests[1] + '.');
+        //     },
+        //     greenting: function() {
+        //         alert('Hi! I\'m ' + this.name[0] + '.');
+        //     }
+        // }
+        
+
+        // 定义一个人的函数(声明对象)
+        function createNewPerson(name) {
+            var obj = {};
+            obj.name = name;
+            obj.greeting = function () {
+                alert('Hi! I\'m' + this.name + '.');
+            }
+            return obj;
+        }
+        // 创建一个新人
+        var salva = createNewPerson('salva');
+
+
+
+        // function Person(name) {
+        //     this.name = name;
+        //     this.greeting = function() {
+        //         alert('Hi! I\'m' + this.name + '.');
+        //     };
+        // }
+        // var person1 = new Person('Bob');
+        // var person2 = new Person('lilie');
+        
+
+        // 更加详细的一个对象（构造函数）
+        function Person(first, last, age, gender, interests) {
+            this.name = {
+                'first': first,
+                'last': last
+            };
+            this.age = age;
+            this.gender = gender;
+            this.interests = interests;
+            this.bio = function() {
+                alert(`${this.name.first} ${this.name.last}  is  ${this.age}  years old. ${gender == 'male' ? 'He' : 'She'} likes  ${this.interests.join(' and ')}.`);
+            };
+            this.greeting = function() {
+                alert('Hi! I\'m ' + this.name.first + '.');
+            }
+        }
+        var person1 = new Person('Bob', 'Smith', 32, 'male', ['music', 'skiing']);
+        var perdon2 = new Person('lili', 'li', 33, 'falmale', ['music','skiing','swinning','running']);
+
+        // Object()构造函数
+        var person3 = new Object(); // 一个空的对象，可以添加一些需要的东西
+
+        //使用create()方法
+        var person4 = Object.create(person1); // 基于person1 创建的一个对象
+    </script>  
+</body>
+</html>

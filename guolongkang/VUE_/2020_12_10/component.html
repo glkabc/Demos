@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="app">
+        <button-click></button-click>
+        <button-click></button-click>
+        <!-- <button-click/> -->
+        <hr>
+        <span-item title="green"></span-item>
+        <span-item title="black"></span-item>
+        <span-item :title="header"></span-item>
+        <hr>
+        <input-item @input="input"></input-item>
+
+        <hr>
+        <input-list :title='titles' placeholder="haha" style="color: brown;"></input-list>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // 注册全局组件
+        Vue.component('button-click', {
+            data: function () {
+                return {
+                    content: 0
+                };
+            },
+            template: `<button @click="content++">you click {{content}} content.</button>`
+        });
+
+        Vue.component('span-item', {
+            props: ['title'],
+            template: '<span>{{title}}</span>'
+        })
+
+        Vue.component('input-item', {
+            props: ['value'],
+            template: `<input 
+                        :value="value"
+                        type="text"
+                        @click="$emit('input', $event.target.value)"
+                        >`
+        })
+
+        var vm = new Vue({
+            el: '.app',
+            data: {
+                header: 'Hello World!',
+                titles: {
+                    first: '大明',
+                    last: '大猩猩'
+                },
+                // titles: ['大明', '大猩猩']
+
+            },
+            methods: {
+                input (target) {
+                    console.log(target)
+                }
+            },
+            components: {
+                inputList: {
+                    // inheritAttrs: false 选项不会影响 style 和 class 的绑定。
+                    inheritAttrs: false, // 禁用 Attribute 继承
+                    props: {
+                        title: {
+                            type: Object, // 类型检查
+                            default: () => {
+                                return {
+                                    first: '李',
+                                    last: '明'
+                                };
+                            }
+                        }
+                    },
+                    template: `<input type='text' :value="title.first + title.last">`
+                }
+            }
+        })
+    </script>
+</body>
+</html>

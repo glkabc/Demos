@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/base.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h2>async和await是怎样工作的</h2>
+        <p>使用async关键字可以使函数变成异步的（promise），在配合await关键字可以使函数看上去和同步代码一样，但是在await处js解释器会停在此处等待异步完成操作并返回结果，才会往下继续。</p>
+        <h3>错误处理</h3>
+        <p>可以将同步的 try...catch 结构 和 async/await 一起使用 。也可以正常catch捕获错误。</p>
+        <hr>
+        <h3>async/await的缺陷</h3>
+        <p class="warning">Async/await 让你的代码看起来是同步的，在某种程度上，也使得它的行为更加地同步。 await 关键字会阻塞其后的代码，直到promise完成，就像执行同步操作一样。它确实可以允许其他任务在此期间继续运行，但您自己的代码被阻塞。</p>
+        <p>有一种模式可以缓解这个问题——通过将 Promise 对象存储在变量中来同时开始它们，然后等待它们全部执行完毕。</p>
+        <hr>
+        
+    </div>
+    <script>
+        function resolveAfter2Seconds(x) {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve(x);
+                }, 2000);
+            });
+        };
+
+        const add = async function(x) { // async function expression assigned to a variable
+            let a = await resolveAfter2Seconds(20);
+            let b = await resolveAfter2Seconds(30);
+            return x + a + b;
+        };
+
+        add(10).then(v => {
+            console.log(v);  // prints 60 after 4 seconds.
+        });
+
+
+        (async function(x) { // async function expression used as an IIFE
+            let p_a = resolveAfter2Seconds(20);
+            let p_b = resolveAfter2Seconds(30);
+            return x + await p_a + await p_b;
+        })(10).then(v => {
+            console.log(v);  // prints 60 after 2 seconds.
+        });
+    </script>
+    <script>
+        /*try --  catch捕获*/
+        async function myFetch() {
+            try {
+                let response = await fetch('coffee.jpg');
+                let myBlob = await response.blob();
+
+                let objectURL = URL.createObjectURL(myBlob);
+                let image = document.createElement('img');
+                image.src = objectURL;
+                document.body.appendChild(image);
+            } catch(e) {
+                console.log(e);
+            }
+        }
+        myFetch();
+
+        /*正常异常捕获*/
+        async function myFetch() {
+            let response = await fetch('coffee.jpg');
+            return await response.blob();
+        }
+
+        myFetch().then((blob) => {
+            let objectURL = URL.createObjectURL(blob);
+            let image = document.createElement('img');
+            image.src = objectURL;
+            document.body.appendChild(image);
+        })
+        .catch( e => {
+            console.log(e);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/base.css">
+    <title>伪类和伪元素</title>
+    <style>
+        .first li:first-child {
+            color: blue;
+        }
+        .first li:last-child {
+            color: blueviolet;
+        }
+        .first li:nth-child(0n+ 2) {
+            color: chartreuse;
+        }
+        .first li:nth-child(odd) {
+            font-style: italic;
+        }
+        .first li:nth-child(even) {
+            font-size: 20px;
+        }
+        .first ul:only-child {
+            font-weight: 700;
+        }
+
+        /* input:invalid {
+            color: crimson;
+        }
+        :-moz-submit-invalid {
+            color: crimson;
+        }
+        :-moz-ui-invalid {
+            color: crimson;
+        } */
+
+        input:invalid {
+            background-color: crimson;
+        }
+
+        input:valid {
+            background-color: green;
+        }
+
+        article::first-line {
+            font-size: 20px;
+        }
+
+        article p:last-child::first-line {
+            color: #eee;
+        }
+
+        .befforee::after  {
+            content: "这是使用伪类添加出来的";
+            display: block;
+            width: 110px;
+            height: 110px;
+            background-color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>伪类和伪元素</h1>
+        <h2>什么是伪类：</h2>
+        <p>伪类是一种选择器，它用与选择特定状态的元素，比如当他们是这一类型的第一个元素时或者是当鼠标指针悬浮在元素上面的时候。它们表现得会像是你向你的文档的某个部分应用了一个类一样，帮你在你的标记文本中减少多余的类，让你的代码更灵活、更易于维护。</p>
+        <pre>:hover</pre>
+        <hr>
+        <div class="first">
+            <ul>
+                <li>此元素背景色不是lime</li>
+                <li>我的也不是lime。</li>
+                <li>我的才是lime！ :)</li>
+                <li>
+                    <ul>
+                        <li>你好</li>
+                        <li>你好</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <input type="text" value="你好">
+        <hr>
+        <h2>用户行为伪类</h2>
+        <p>一些伪类只会在用户以某种方式和文档交互的时候应用。这些用户行为伪类，有时叫做动态伪类，表现得就像是一个类在用户和元素交互的时候加到了元素上一样。案例包括：</p>
+        <div class="two">
+            <ul>
+                <li><b>:hover</b>————上面提到过，只会在用户将指针挪到元素上的时候才会激活，一般就是链接元素。</li>
+                <li><b>:focus</b>————只会在用户使用键盘控制，选定元素的时候激活。</li>
+            </ul>
+        </div>
+        <hr>
+        <h2>伪元素</h2>
+        <p>伪元素以类似方式表现，不过表现得是像你往标记文本中加入全新的HTML元素一样，而不是向现有的元素上应用类。伪元素开头为双冒号 <b>::</b> 。</p>
+        <pre>::first-line</pre>
+        <article>
+            <p>这是一行字，但是自动换行到第二行后和第一行的样式就不一样了。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。</p>
+            <p>这是一行字，但是自动换行到第二行后和第一行的样式就不一样了。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。</p>
+        </article>
+
+        <p class="befforee">伪类添加</p>
+    </div>
+</body>
+</html>

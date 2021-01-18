@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/base.css">
+    <title>Scope</title>
+</head>
+<body>
+    <div class="container">
+        <h1>函数作用域和冲突</h1>
+        <p>作用域（scope）在处理函数时是一个非常重要的概念。</p>
+        <ul class="pp">
+            <li>函数内定义的变量和其他东西都在它自己的单独范围内，意味着它们被锁在自己独立的隔间中, 不能被函数外的代码访问。</li>
+            <li>所有函数的最外层被称为全局作用域。 在全局作用域内定义的值可以在任意地方访问。</li>
+        </ul>
+        <hr>
+        <pre class="warning">相同的范围规则不适用于循环（for（）{...}）和条件块（if（）{...}） - 它们看起来非常相似，但它们不一样！小心不要让这些困惑。</pre>
+        <hr>
+        <h2>函数内部的函数</h2>
+        <p>我们可以在任意的地方去调用函数，甚至可以在另一个函数内部去调用另一个函数。</p>
+        <pre>function one() {
+    var value = one;
+    two(value);
+    three(value);
+}
+two(value) {
+    console.log(value);
+}
+three(value) {
+    console.log(value);
+}</pre>
+    </div>
+
+    <script>
+        let x = 1;
+        function a() {
+            let y  = 2;
+            output(y);
+        }
+        function b() {
+            let z = 3;
+            output(z);
+        }
+        function output(value) {
+            const para = document.createElement('p');
+            const pp = document.querySelector('.pp');
+            pp.appendChild(para);
+            para.textContent = 'Value: ' + value;
+        }
+    </script>
+</body>
+</html>

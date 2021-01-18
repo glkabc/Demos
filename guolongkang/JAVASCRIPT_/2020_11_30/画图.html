@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/base.css">
+    <title>画图</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <canvas width="800px" height="500px" class="myCanvas">
+            <p>浏览器暂不支持此功能</p>
+        </canvas>
+        <hr>
+        <h2>Canvas的一些属性和方法</h2>
+        <ul>
+            <li>beginPath(): 在钢笔当前位置开始绘制一条路径，在新的画布中，钢笔的起始位置是（0，0）</li>
+            <li>moveTo(): 将钢笔以至另一个坐标点，不记录，不留痕迹，只将钢笔“跳”至新位置</li>
+            <li>fill(): 通过为当前所绘制路径的区域填充颜色来绘制一个新的填充形状</li>
+            <li>stroke(): 通过为当前绘制路径的区域描边，来绘制一个只有边框的形状</li>
+            <li>路径也可以和矩形一样使用 lineWidth 和 fillStyle/strockeStyle 等功能</li>
+        </ul>
+        <hr>
+    </div>
+
+    <script>
+        const canvas = document.querySelector('.myCanvas');
+        const container = document.querySelector('conatiner');
+        // let width = canvas.width = window.innerWidth;
+        // let height = canvas.height = window.innerHeight;
+        let width = canvas.width;
+        let height = canvas.height;
+
+        let ctx = canvas.getContext('2d');
+
+        // 将原点移动到画布中心
+        ctx.translate(width/2, height/2);
+
+        // ctx.fillStyle = 'rgb(255, 0, 0)';
+        // // ctx.fillReact(0, 0, width, height);
+        // ctx.fillRect(50, 50, 100, 150);
+
+        // ctx.fillStyle = 'rba(0, 255, 0)';
+        // ctx.fillRect(180, 50, 200, 100);
+
+        // ctx.fillStyle = 'rgba(255, 0, 255, 0.75)';
+        // ctx.fillRect(25, 100, 175, 50);
+
+        // ctx.strokeStyle = 'rgba(255, 255, 255, .5)';
+        // ctx.lineWidth = 5;
+        // ctx.strokeRect(25, 25, 175, 200);
+
+        // 等腰三角形
+        ctx.fillStyle = 'rgb(255, 0, 0)';
+        ctx.beginPath();
+        ctx.moveTo(50,50);
+        ctx.lineTo(150, 50);
+        let triHeight = 50 * Math.tan(degToRad(60));
+        ctx.lineTo(100, 50 + triHeight);
+        ctx.lineTo(50, 50);
+        ctx.fill();
+
+        // 局部的圆
+        ctx.fillStyle = 'rgb(0, 0, 255)';
+        ctx.beginPath();
+        ctx.arc(150, 150, 50, degToRad(0), degToRad(360), false);
+        ctx.fill();
+
+        // 弧度
+        ctx.fillStyle = 'yellow';
+        ctx.beginPath();
+        ctx.arc(300, 106, 50, degToRad(-45), degToRad(45), true);
+        ctx.lineTo(300, 106);
+        ctx.fill();
+
+        // 文字
+        ctx.strokeStyle = 'blue';
+        ctx.lineWidth = 1;
+        ctx.font = '36px arial';
+        ctx.strokeText('Canvas text',50, 50);
+
+        ctx.fillStyle = 'red';
+        ctx.font = '48px gerogia';
+        ctx.fillText('Canvas text', 300, 50);
+
+        // 绘制图片
+        let image = new Image();
+        image.src = './images/firefox.png';
+        image.onload = () => {
+            ctx.drawImage(image, 300, 200);
+            // ctx.drawImage(image, 20, 20, 185, 175, 50, 50, 185, 175);
+            /*
+             * ctx.drawImage(image, 20, 20, 185, 175, 50, 50, 185, 175);
+             * 参数一： 图片的引用
+             * 参数二， 三： 表示裁切部分左上顶点的坐标，参考原点为原图片本身左上角的坐标。原图片在该坐标左、上的部分均不会绘制出来。
+             * 参数四， 五： 表示裁切部分的长，宽。
+             * 参数六， 七： 表示裁切部分左上顶点在画布中的位置坐标，参考原点为画布左上顶点。
+             * 参数八， 九： 表示裁切部分在画布中绘制的长、宽。本例中绘制时与裁切时面积相同，你也可以定制绘制的尺寸。
+             * 
+             */
+        }
+
+        function degToRad(degrees) {
+            return degrees * Math.PI / 180;
+        }
+        function random(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + max;
+        }
+
+        let length = 150;
+        let moveOffset = 20;
+        for (let i = 0; i < length; i++){
+            ctx.fillStyle = 'rgba(' + (255-length) + ', 0, ' + (255-length) + ', 0.9)';
+            ctx.beginPath();
+            ctx.moveTo(moveOffset, moveOffset);
+            ctx.lineTo(moveOffset+length, moveOffset);
+            let triHeight = length/2 * Math.tan(degToRad(60));
+            ctx.lineTo(moveOffset+(length/2), moveOffset+triHeight);
+            ctx.lineTo(moveOffset, moveOffset);
+            ctx.fill();
+
+            length--;
+            moveOffset += 0.7;
+            ctx.rotate(degToRad(5));
+        }
+    </script>
+</body>
+</html>

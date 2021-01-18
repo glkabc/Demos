@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/from.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h1>表单</h1>
+        <p>一个简单的表单中，属性至少要设置： action和method</p>
+        <ul>
+            <li><b>action</b>: 属性定义了在提交表单时，应该把所收集到的数据推送给谁（那个模块/URL）去处理</li>
+            <li><b>method</b>：属性定义了发送数据的HTTP方法（post/get）</li>
+        </ul>
+        <hr>
+        <form action="./from.html" method="POST">
+            <!-- <div>
+                <label for="search">搜索框：</label>
+                <input type="search" id="search">
+            </div> -->
+
+            <div>
+                <label for="name">姓名：</label>
+                <input type="text" id="name" name="user_name">
+            </div>
+
+            <div>
+                <label for="mail">E-mail: </label>
+                <input type="email" id="mail" name="user_mail">
+            </div>
+
+            <div>
+                <label for="msg">Message: </label>
+                <textarea name="user_message" id="msg" cols="30" rows="10"></textarea>
+            </div>
+
+            <div class="button">
+                <button type="submit">Send your message</button>
+            </div>
+        </form>
+        <hr>
+        <h2>单行文本框</h2>
+        <pre>&lt;input type="text" id="comment" name="comment" value="I'm a text field"&gt;</pre>
+        <h4>E-mail 地址框</h4>
+        <pre>&lt;input type="email" id="email" name="email" multiple&gt;</pre>
+        <h4>密码框</h4>
+        <pre>&lt;input type="password" id="pwd" name="pwd"&gt;</pre>
+        <h4>搜索框</h4>
+        <pre>&lt;input type="search" id="search" name="search"&gt;</pre>
+        <h4>电话号码栏：</h4>
+        <pre>&lt;input type="tel" id="tel" name="tel"&gt;</pre>
+        <h4>URL 栏</h4>
+        <pre>&lt;input type="url" id="url" name="url"&gt;</pre>
+        <h4>多行文本框</h4>
+        <pre>&lt;textarea cols="30" rows="10"&gt;&lt;/textarea&gt;</pre>
+        <hr>
+        <h2>高级表单部件</h2>
+        <h3>数字</h3>
+        <p>用于数字的小部件是用type属性设置为number&lt;input&gt;的元素创建的。这个控件看起来像一个文本框，但是只允许浮点数，并且通常提供一些按钮来增加或减少小部件的值。</p>
+        <ul>
+            <li>通过设置min和max属性来约束该值。</li>
+            <li>通过设置step属性来指定增加和减少按钮更改小部件的步进值大小。</li>
+        </ul>
+        <pre>&lt;input type="number" name="age" id="age" min="1" max="10" step="2"&gt;</pre>
+        <input type="number" name="age" id="age" min="1" max="10" step="2">
+        <h3>滑块</h3>
+        <p>从视觉上讲，滑块没有文本字段准确，因此它们被用来选择一个确切值并不重要的数字。</p>
+        <p class="warning">滑块是通过把&lt;input&gt;元素的type属性值设置为range来创建的。正确配置滑块是很重要的；为了达到这个目的，我们强烈建议您设置min、max和step属性。</p>
+        <pre>&lt;input type="range" name="beans" id="beans" min="0" max="500" step="10"&gt;</pre>
+        <input type="range" name="beans" id="beans" min="0" max="500" step="10">
+        <p>它可能的值在0到500之间，而它的递增/递减按钮以+10和-10来改变值。</p>
+        <h3>日期选择器</h3>
+        <h4>本地时间</h4>
+        <p>这将创建一个小部件来显示和选择一个日期，但是没有任何特定的时区信息。</p>
+        <pre>&lt;input type="datetime-local" name="datetime" id="datetime"&gt;</pre>
+        <input type="datetime-local" name="datetime" id="datetime">
+        <h4>月</h4>
+        <pre>&lt;input type="month" name="month" id="month"&gt;</pre>
+        <input type="month" name="month" id="month">
+        <h4>时间</h4>
+        <pre>&lt;input type="time" name="time" id="time"&gt;</pre>
+        <input type="time" name="time" id="time">
+        <h4>星期</h4>
+        <pre>&lt;input type="week" name="week" id="week"&gt;</pre>
+        <input type="week" name="week" id="week">
+        <p class="warning">所有时间和日期控制都可以使用 min和max属性来约束<br>
+            &lt;input type="date" name="myDate" min="2013-06-01" max="2013-08-31" id="myDate"&gt;
+        </p>
+        <h4>拾色器</h4>
+        <pre>&lt;input type="color" name="color" id="color"&gt;</pre>
+        <input type="color" name="color" id="color">
+        <h4>文件选择器</h4>
+        <p>设置 multiple 属性可以选择多个文件</p>
+        <pre>&lt;input type="file" name="file" id="file" accept="image/*" multiple&gt;</pre>
+        <input type="file" name="file" id="file" accept="image/*" multiple>
+        <h3>仪表和进度条</h3>
+        <h4>进度条</h4>
+        <pre>&lt;progress max="100" value="75"&gt;75/100&lt;/progress&gt;</pre>
+        <progress max="100" value="75">75/100</progress>
+        <h4>仪表</h4>
+        <p>所有实现&lt;meter&gt;元素的浏览器都使用这些值来改变米尺的颜色。</p>
+        <ul>
+            <li>如果当前值位于该范围的优先部分，则该条是绿色的。</li>
+            <li>如果当前值位于该范围的平均部分，则该条是黄色的。</li>
+            <li>如果当前值处于最糟糕的范围，则该条是红色的。</li>
+        </ul>
+        <pre>&lt;meter min="0" max="100" value="75" low="33" high="66" optimum="50"&gt;75&lt;/meter&gt;</pre>
+        <meter min="0" max="100" value="75" low="33" high="66" optimum="50">75</meter>
+        <!-- <select id="groups" name="groups">
+            <optgroup label="fruits">
+              <option>Banana</option>
+              <option selected>Cherry</option>
+              <option>Lemon</option>
+            </optgroup>
+            <optgroup label="vegetables">
+              <option>Carrot</option>
+              <option>Eggplant</option>
+              <option>Potato</option>
+            </optgroup>
+          </select> -->
+
+          <!-- 自动补全输入框 -->
+          <!-- <label for="myFruit">What's your favorite fruit?</label>
+            <input type="text" name="myFruit" id="myFruit" list="mySuggestion">
+            <datalist id="mySuggestion">
+            <option>Apple</option>
+            <option>Banana</option>
+            <option>Blackberry</option>
+            <option>Blueberry</option>
+            <option>Lemon</option>
+            <option>Lychee</option>
+            <option>Peach</option>
+            <option>Pear</option>
+        </datalist> -->
+    </div>
+</body>
+</html>

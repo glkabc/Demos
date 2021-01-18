@@ -1,0 +1,36 @@
+.container form {
+    margin: 0 auto;
+    padding: 2em;
+    border-radius: 1em;
+    width: 400px;
+    border: 1px solid #eee;
+}
+
+.container form div {
+    margin: 10px 0px;
+}
+
+.container form button {
+    margin-left: 80px;
+}
+
+.container form label {
+    display: inline-block;
+    width: 80px;
+    text-align: right;
+}
+
+.container form input, .container form textarea {
+    width: 300px;
+    box-sizing: border-box;
+    border: 1px solid #999;
+    font: 1em sans-serif;
+}
+
+textarea {
+    /* 使多行文本输入框和它们的label正确对齐 */
+    vertical-align: top;
+  
+    /* 给文本留下足够的空间 */
+    height: 5em;
+  }

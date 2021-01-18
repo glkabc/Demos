@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img srcset="images/timg_480+270.jpg 480w,
+                 images/timg_960+540.jpg 960w,
+                 images/timg_1920+1080.jpg 1920w"
+         sizes="(max-width: 480px) 480px,
+                (max-width: 960px) 960px,
+                1920px" 
+         src="images/timg_1920+1080.jpg"
+         alt="">
+        
+    <!-- 显示错误，应该是倍数比例错了 -->
+    <img srcset="images/timg_480+270.jpg,
+                 images/timg_960+540.jpg 1.5x,
+                 images/timg_1920+1080.jpg 2x"
+         src="images/timg_1920+1080.jpg"
+         alt="">
+
+    <picture>
+        <source media="(max-width: 480px)" srcset="images/timg_480+270.jpg">
+        <source media="(max-width: 960px)" srcset="images/timg_960+540.jpg">
+        <!-- <source media="(max-width: 1920px)" srcset="images/timg_1920+1080.jpg"> -->
+        <img src="./images/timg_1920+1080.jpg" alt="风景图片">
+    </picture>
+</body>
+</html>

@@ -1,0 +1,27 @@
+ul {
+    padding: 0;
+    
+}
+ul li {
+    list-style-type: none;
+}
+.indexList {
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+ul div {
+    display: flex;
+    padding: 10px 20px;
+    background-color: #eee;
+    margin: 5px 5px;
+}
+div li {
+    flex: 8;
+    overflow-x: scroll;
+    margin-right: 10px;
+    text-align: left;
+}
+div button {
+    flex: 2;
+}

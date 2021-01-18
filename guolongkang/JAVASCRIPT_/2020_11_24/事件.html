@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/base.css">
+    <title>事件</title>
+    <style>
+        button {
+            margin: 10px;
+            padding: 10px;
+            border: 0px;
+            font-size: 20px;
+            border-radius: 10px;
+        }
+        button:focus {
+            outline: 0;
+        }
+        button:hover {
+            box-shadow: 0 0 10px #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button>Change color</button>
+        <hr>
+        <p>改变事件</p>
+        <ul>
+            <li>btn.click ==> btn.onfocus/btn.onblur</li>
+            <p>颜色将于按钮被置于焦点或解除焦点时改变</p>
+            <li>btn.click ==> btn.ondblclick</li>
+            <p>颜色将仅于按钮被双击时改变。</p>
+            <li>btn.click ==> window.onkeypress / window.onkeydown / window.onkeyup</li>
+            <p> 当按钮被按下时颜色会发生改变. keypress 指的是通俗意义上的按下按钮 (按下并松开), 而 keydown 和 keyup 指的是按键动作的一部分,分别指按下和松开. 注意如果你将事件处理器添加到按钮本身，它将不会工作 — 我们只能将它添加到代表整个浏览器窗口的 window对象中。</p>
+            <li>btn.click ==> btn.onmouseover / btn.onmouseout</li>
+            <p>颜色将会在鼠标移入按钮上方时发生改变, 或者当它从按钮移出时.</p>
+        </ul>
+        <hr>
+        <h4>新的事件触发机制</h4>
+        <p>addEventListener() / removeEventListener()</p>
+        <pre><code>const btn = document.querySelector('button');
+function bgChange() {
+    const rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+    document.body.style.backgroundColor = rndCol;
+}   
+btn.addEventListener('click', bgChange); // ==> 事件触发</code></pre>
+        <pre>btn.removeEventListener('click', bgChange); // ==> 事件移除</pre>
+        <p>新的事件触发在同时触发一个事件时可以有不同处理函数，但老式的会出现覆盖</p>
+        <hr>
+        <h4>阻止默认行为</h4>
+        <pre>preventDefault()</pre>
+        <h4>事件冒泡及捕获</h4>
+        <p>当一个事件发生在具有父元素的元素上时，现代浏览器运行两个不同的阶段 - 捕获阶段和冒泡阶段。 在捕获阶段：</p>
+        <ul>
+            <li>浏览器检查元素的最外层祖先&lt;lhtml&gt;，是否在捕获阶段中注册了一个onclick事件处理程序，如果是，则运行它。</li>
+            <li>然后，它移动到&lt;html&gt;中单击元素的下一个祖先元素，并执行相同的操作，然后是单击元素再下一个祖先元素，依此类推，直到到达实际点击的元素。</li>
+        </ul>
+        <p>在冒泡阶段，恰恰相反:</p>
+        <ul>
+            <li>浏览器检查实际点击的元素是否在冒泡阶段中注册了一个onclick事件处理程序，如果是，则运行它</li>
+            <li>然后它移动到下一个直接的祖先元素，并做同样的事情，然后是下一个，等等，直到它到达&lt;html&gt;元素。</li>
+        </ul>
+        <h4>用 stopPropagation() 修复问题</h4>
+        <p>标准事件对象具有可用的名为 <b>stopPropagation()</b>的函数, 当在事件对象上调用该函数时，它只会让当前事件处理程序运行，但事件不会在冒泡链上进一步扩大，因此将不会有更多事件处理器被运行(不会向上冒泡)。</p>
+        <hr>
+        <h4>事件委托</h4>
+        <p>利用事件冒泡，将事件委托给父元素。</p>
+    </div>
+    <script>
+      const btn = document.querySelector('button');
+
+      function random(number) {
+        return Math.floor(Math.random()*number);
+      }
+
+      function bgChange() {
+        const rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+        btn.style.backgroundColor = rndCol;
+      }
+
+      btn.ondblclick = bgChange;
+    </script>
+</body>
+</html>

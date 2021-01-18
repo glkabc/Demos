@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 阻止单机事件继续传播 -->
+        <a href="#" @click.stop="doThis"></a>
+        
+        <!-- 提交事件不在重载页面 -->
+        <form action="#" method="#" @submit.prevent="doWhat"></form>
+
+        <!-- 串联修饰符 -->
+        <a href="#" @click.stop.prevent="doWhat"></a>
+
+        <!-- 只有修饰符 -->
+        <form action="#" method="#" @submit.prevent></form>
+
+        <!-- 添加事件监听器时使用事件捕获模式 -->
+        <!-- 即内部元素触发的事件先在此处理，然后才交由内部元素进行处理 -->
+        <div @click.capture="doThis">...</div>
+
+        <!-- 只当在 event.target 是当前元素自身时触发处理函数 -->
+        <!-- 即事件不是从内部元素触发的 -->
+        <div @click.self="doThat">...</div>
+
+        <!-- 点击事件将只会触发一次 -->
+        <a @click.once="doThis"></a>
+
+        <!-- 滚动事件的默认行为 (即滚动行为) 将会立即触发 -->
+        <!-- 而不会等待 `onScroll` 完成  -->
+        <!-- 这其中包含 `event.preventDefault()` 的情况 -->
+        <!-- 这个 .passive 修饰符尤其能够提升移动端的性能。 -->
+        <!-- 不要把 .passive 和 .prevent 一起使用，因为 .prevent 将会被忽略，同时浏览器可能会向你展示一个警告。请记住，.passive 会告诉浏览器你不想阻止事件的默认行为。 -->
+        <div @scroll.passive="onScroll">...</div>
+
+        <!-- 只有在 `key` 是 `Enter` 时调用 `vm.submit()` -->
+        <input @keyup.enter="submit">
+
+        <!-- .exact 修饰符允许你控制由精确的系统修饰符组合触发的事件。 -->
+        <!-- 即使 Alt 或 Shift 被一同按下时也会触发 -->
+        <button @click.ctrl="onClick">A</button>
+        <!-- 有且只有 Ctrl 被按下的时候才触发 -->
+        <button @click.ctrl.exact="onCtrlClick">A</button>
+        <!-- 没有任何系统修饰符被按下的时候才触发 -->
+        <button @click.exact="onClick">A</button>
+
+
+        <hr>
+        <span>text: </span>
+        <p>{{message}}</p>
+        <textarea name="" id="" cols="30" rows="10" v-model="message" placeholder="into some thing"></textarea>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: ''
+            }
+        })
+    </script>
+</body>
+</html>

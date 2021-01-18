@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/base.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h2>异步代码</h2>
+        <p>web workers相当有用，但是他们确实也有局限。主要的一个问题是他们不能访问 DOM — 不能让一个worker直接更新UI。我们不能在worker里面渲染1百万个蓝色圆圈，它基本上只能做算数的苦活。</p>
+        <p>其次，虽然在worker里面运行的代码不会产生阻塞，但是基本上还是同步的。当一个函数依赖于几个在它之前运行的过程的结果，这就会成为问题。</p>
+        <hr>
+        <h3>异步callback</h3>
+        <pre>function loadAsset(url, type, callback) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.responseType = type;
+  
+    xhr.onload = function() {
+      callback(xhr.response);
+    };
+  
+    xhr.send();
+  }
+  
+  function displayImage(blob) {
+    let objectURL = URL.createObjectURL(blob);
+  
+    let image = document.createElement('img');
+    image.src = objectURL;
+    document.body.appendChild(image);
+  }
+  
+  loadAsset('coffee.jpg', 'blob', displayImage);</pre>
+        <p>不是所有的回调函数都是异步的 — 有一些是同步的。一个例子就是使用 Array.prototype.forEach() </p>
+        <p>forEach() 需要的参数是一个回调函数，回调函数本身带有两个参数，数组元素和索引值。它无需等待任何事情，立即运行。</p>
+        <hr>
+        <h3>Promises</h3>
+        <pre>fetch('products.json').then(function(response) {
+   return response.json();
+ }).then(function(json) {
+   products = json;
+   initialize();
+ }).catch(function(err) {
+   console.log('Fetch problem: ' + err.message);
+ });</pre>
+        <p>这里fetch() 只需要一个参数— 资源的网络 URL — 返回一个 promise. promise 是表示异步操作完成或失败的对象。可以说，它代表了一种中间状态。 本质上，这是浏览器说“我保证尽快给您答复”的方式，因此得名“promise”。</p>        </p>
+        <hr>
+        <h4>事件队列</h4>
+        <p>像promise这样的异步操作被放入事件队列中，事件队列在主线程完成处理后运行，这样它们就不会阻止后续JavaScript代码的运行。排队操作将尽快完成，然后将结果返回到JavaScript环境。</p>
+        <hr>
+        <h4>Promises和callbacks的对比</h4>
+        <p>Promises与旧式callbacks有一些相似之处。他们本质上是一个返回的对象，你可以将回调函数附加到对象上，而不必将回调作为参数传递给另一个函数。</p>
+        <p>Promises是专门为异步操作而设计的，与旧式回调具有许多优点</p>
+        <ul>
+          <li>你可以使用多个then()操作将多个异步操作链接在一起，并将其中一个操作的结果作为输入传递给下一个操作。这种链接方式对回调来说要难得多，会使回调以混乱的“末日金字塔”告终。 (也称为回调地狱)。</li>
+          <li>Promise总是严格按照它们放置在事件队列中的顺序调用。</li>
+          <li>错误处理要好得多——所有的错误都由块末尾的一个.catch()块处理，而不是在“金字塔”的每一层单独处理。</li>
+        </ul>
+    </div>
+
+    <script>
+      console.log ('Starting');
+      let image;
+
+      fetch('https://mdn.github.io/learning-area/javascript/asynchronous/introducing/coffee.jpg').then((response) => {
+        console.log('It worked :)')
+        return response.blob();
+      }).then((myBlob) => {
+        let objectURL = URL.createObjectURL(myBlob);
+        image = document.createElement('img');
+        image.src = objectURL;
+        document.body.appendChild(image);
+        console.log('Image is created');
+      }).catch((error) => {
+        console.log('There has been a problem with your fetch operation: ' + error.message);
+      });
+
+      console.log ('All done! ' + image + ' displayed');
+    </script>
+</body>
+</html>

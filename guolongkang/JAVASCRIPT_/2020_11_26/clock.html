@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/clock.css">
+    <title>秒表</title>
+</head>
+<body>
+    <div class="container">
+        <div class="clock">
+            <div class="time">
+                <p>00 : 00 : 00</p>
+            </div>
+            <div class="button">
+                <button class="start">开始</button>
+                <button class="stop">暂停</button>
+                <button class="reset">清零</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const date = Date.now();
+        const p = document.querySelector('.time p');
+        const startButton = document.querySelector('.start');
+        const stopButton = document.querySelector('.stop');
+        const resetButton = document.querySelector('.reset');
+
+        let StratTime = 0;
+        let EndTime = 0;
+        let clickEvev;
+        let m = 0;
+        let h = 0;
+        let s = 0;
+        function zero (num) {
+            if (num < 10) {
+                return `0${num}`;
+            }
+            return num;
+        }
+        function stratTT (StratTime) {
+            s = Math.floor((Date.now() - StratTime) / 1000);
+            if (s >= m * 60 + 60) {
+                m++;
+            }
+            if (m >= h * 60 + 60) {
+                h++;
+            }
+            p.textContent = zero(h) + ' : ' + zero(m -  h * 60) + ' : '+ zero(s - m * 60) ;
+        }
+        function startT() {
+            StratTime = Date.now();
+            clickEvev = setInterval(stratTT,1000,StratTime);
+        }
+        function stopT () {
+            // if (clickEvev) {
+            //     clearInterval(clickEvev);
+            //     stopButton.textContent = '继续';
+            // } else {
+            //     stopButton.textContent = '暂停';
+            // }
+            clearInterval(clickEvev);
+        }
+        function resetT () {
+            p.textContent = '00 : 00 : 00';
+            h = 0;
+            m = 0;
+            s = 0;
+            clearInterval(clickEvev);
+        }
+        startButton.addEventListener('click',startT);
+        stopButton.addEventListener('click',stopT);
+        resetButton.addEventListener('click',resetT);
+    </script>
+</body>
+</html>

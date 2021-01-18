@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/base.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <button>清除姓名</button>
+        <h1>存储简单数据 — web storage</h1>
+        <h2>基本语法</h2>
+        <h3>sessionStorage</h3>
+        <p class="warning">只要浏览器开着，数据就会一直保存 (关闭浏览器时数据会丢失) </p>
+        <h3>localStorage</h3>
+        <p class="warning">保存的数据会一直保存着，当浏览器关闭也会保存</p>
+        <p>存储一个数据到localStorage里</p>
+        <pre>localStorage.setItem('name','goo');</pre>
+        <p>获取取localStorage对应的数据</p>
+        <pre>let myName = localStorage.getItem('name');</pre>
+        <p>删除localStorage里面对应的数据</p>
+        <pre>localStorage.removeItem('name');</pre>
+        <hr>
+        <h1>存储复杂数据 — IndexedDB</h1>
+
+    </div>
+    <script>
+        const button = document.querySelector('.container button');
+
+        function setStorage() {
+            if (localStorage.getItem('name')) {
+                alert('hello ' + localStorage.getItem('name'))
+            } else {
+                let name = prompt('please input your name');
+                localStorage.setItem('name',name);
+                alert('hello ' + localStorage.getItem('name'))
+            }
+        }
+
+        function clearName() {
+            if (localStorage.getItem('name')) {
+                localStorage.removeItem('name');
+            } else {
+                alert('Sorry no name');
+            }
+        }
+
+        button.addEventListener('click', clearName);
+        window.onload = () => {
+            setStorage();
+        }
+
+        
+    </script>
+</body>
+</html>

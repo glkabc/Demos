@@ -1,0 +1,47 @@
+.container,
+.container2 {
+    width: 600px;
+    margin: 0 auto;
+}
+
+p span[class="alert"] {
+    border: 1px solid #ccc;
+}
+
+p span[class="alert stop"] {
+    background-color: red;
+    border: 1px solid #666;
+}
+
+h2#special {
+    background-color: yellow;
+}
+
+p span[class="alert go"] {
+    background-color: green;
+}
+
+.container2 p:first-child {
+    font-size: 26px;
+}
+.container2 p a[href="http://example.com"] {
+    color: green;
+}
+
+.container2 p:first-child::first-line {
+    color: red;
+}
+
+.container2 table {
+    border-collapse: collapse;
+    width: 50px;
+}
+.container2 table th,td {
+    text-align: left;
+    padding: 5px 0px;
+}
+
+.container2 table tr:nth-child(2n) {
+    background-color: #000;
+    color: white;
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/base.css">
+    <title>Overflow</title>
+    <style>
+        .one div {
+            border: 1px solid #333333;
+            width: 200px;
+            height: 100px;
+            overflow: hidden;
+        }
+
+        .two div {
+            border: 1px solid #333333;
+            width: 200px;
+            height: 100px;
+            overflow: scroll;
+        }
+
+        /* .three div {
+            border: 1px solid #333333;
+            width: 200px;
+            height: 100px;
+        } */
+
+        .box1 {
+            border: 1px solid #333333;
+            width: 200px;
+            height: 100px;
+            overflow-y: scroll;
+        }
+
+        .box2 {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            width: 100px;
+            font-size: 250%;
+            overflow-x: scroll;
+        }
+
+        .four div {
+            border: 1px solid #333333;
+            width: 200px;
+            height: 100px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Overflow属性</h1>
+        <hr>
+        <div class="one">
+            <div>This box has a height and a width. This means that if there is too much content to be displayed within the assigned height, there will be an overflow situation. If overflow is set to hidden then any overflow will not be visible.</div>
+            <pre>overflow:hidden</pre>
+            <p>添加overflow：hidden后超出盒子范围的内容将被覆盖隐藏</p>
+        </div>
+        <hr>
+        <div class="two">
+            <div>This box has a height and a width. This means that if there is too much content to be displayed within the assigned height, there will be an overflow situation. If overflow is set to hidden then any overflow will not be visible.</div>
+            <pre>overflow:scroll</pre>
+            <p>添加overflow:scroll后能够使用滚动条来展示多出来的内容</p>
+        </div>
+        <hr>
+        <div class="three">
+            <div class="box1">This box has a height and a width. This means that if there is too much content to be displayed within the assigned height, there will be an overflow situation. If overflow is set to hidden then any overflow will not be visible.</div>
+            <div class="box2">Overflow</div>
+            <pre>overflow-x:scroll / overflow-y:scroll</pre> 
+            <p>添加overflow-x:scroll (overflow-y:scroll)后在内容的右(下)边会出现一个可以上下滑动的滚动条，来展示多出来的内容</p>
+        </div>
+        <div class="four">
+            <div>This box has a height and a width. This means that if there is too much content to be displayed within the assigned height, there will be an overflow situation. If overflow is set to hidden then any overflow will not be visible.</div>
+            <pre>overflow:auto</pre>
+            <p>如果你只是想让滚动条在有比盒子所能装下更多的内容的时候才显示，那么使用overflow: auto。此时由浏览器决定是否显示滚动条。</p>
+        </div>
+    </div>
+</body>
+</html>

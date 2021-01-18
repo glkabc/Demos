@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="app">
+        <a-list url='wwww.baidu.com'>
+            链接
+        </a-list>
+        <br>
+        <a-list url='wwww.baidu.com'>
+            {{userName}}
+            <span>这是一个span</span>
+            链接
+        </a-list>
+        <br>
+        <a-list url='wwww.baidu.com'>
+            <button-click></button-click>
+            链接
+        </a-list>
+        <br>
+        <!-- <my-component></my-component> -->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('button-click', {
+            data: function () {
+                return {
+                    content: 0
+                };
+            },
+            template: `<button @click="content++">you click {{content}} content.</button>`
+        });
+
+        var vm = new Vue({
+            el: '.app',
+            data: {
+                userName: 'xiaoming'
+             },
+            components: {
+                aList: {
+                    props: {
+                        url: {
+                            type: String,
+                            default() {
+                                return '';
+                            }
+                        }
+                    },
+                    
+                    template: `<a :href="url"><slot>这是一个链接</slot></a>`
+                },
+                // 异步加载 配合webpack使用
+                // 'my-component': () => {require('./checkbox.html')}
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/base.css">
+    <title>prototype</title>
+</head>
+<body>
+    <div class="container">
+    </div>
+    <script>
+        function doSomething(){}
+        doSomething.prototype.foo = "bar";  // 只有构造函数才能在prototype中添加属性或方法，通过继承的实例是不能添加的。
+        var doSomeInstancing = new doSomething();
+        doSomeInstancing.prop = "some value";
+        // doSomeInstancing.prototype.fff = 'ddd' // 出错
+        console.log("doSomeInstancing.prop:      " + doSomeInstancing.prop); 
+        console.log("doSomeInstancing.foo:       " + doSomeInstancing.foo);
+        console.log("doSomething.prop:           " + doSomething.prop);
+        console.log("doSomething.foo:            " + doSomething.foo);  // 查找只会在属性中和_proto_中查找，不会到prototype下去查找
+        console.log("doSomething.prototype.prop: " + doSomething.prototype.prop);
+        console.log("doSomething.prototype.foo:  " + doSomething.prototype.foo);
+    </script>
+</body>
+</html>

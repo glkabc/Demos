@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app" class="container">
+        {{message}}
+        <span v-bind:title='bindNews'>停留一段时间可以看到提示</span><br>
+        <span v-if="seen">show or hidden</span><br>
+        <button v-on:click='showMessage'>click</button><br>
+        <input type="text" v-model='vModel'><span>{{vModel}}</span><br>
+        <span>reverse world: {{computedMessage.split('').reverse().join('')}}</span><br>
+        <span>Computed reverse world: {{computedMessageFunction}}</span><br>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var obj = {
+            a: 1,
+            b: '2'
+        };
+        // 这样obj的修改就不会是同步的了，即obj不在会被追踪
+        Object.freeze(obj);
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'this first vue app!',
+                bindNews: 'vue will show this message!',
+                seen: false,
+                vModel: 'v-model',
+                obj, // 不会再被跟中
+                computedMessage: 'this is will change!',
+                question: ''
+            },
+            methods: {
+                // 不应该使用箭头函数来声明函数方法。箭头函数绑定了父级作用域的上下文，所以 this 将不会按照期望指向 Vue 实例，this.a 将是 undefined。
+                showMessage () {
+                    alert('hello v-on');
+                },
+                showMessage1: function () {}
+            },
+            // 计算属性放置的地方
+            computed: {
+                computedMessageFunction() {
+                    return this.computedMessage.split('').reverse().join('');
+                }
+            },
+            // 侦听器 
+            // 一个对象，键是需要观察的表达式，值是对应回调函数。值也可以是方法名，或者包含选项的对象。Vue 实例将会在实例化时调用 $watch()，遍历 watch 对象的每一个 property。
+            // 虽然计算属性在大多数情况下更合适，但有时也需要一个自定义的侦听器。这就是为什么 Vue 通过 watch 选项提供了一个更通用的方法，来响应数据的变化。当需要在数据变化时执行异步或开销较大的操作时，这个方式是最有用的。
+            watch: {
+                //如果 question 改变这个函数就会执行
+                question: function (newQuestion, oldQuestion) {}
+            },
+
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <table>
+            <caption>A summary of the UK's most famous punk bands</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Band</th>
+                    <th scope="col">Year formed</th>
+                    <th scope="col">No. of Albums</th>
+                    <th scope="col">Most famous song</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Buzzcoks</th>
+                    <td>1976</td>
+                    <td>9</td>
+                    <td>Even fallen in love (with someone you shouldn't've)</td>
+                </tr>
+                <tr>
+                    <th scope="row">The Clash</th>
+                    <td>1976</td>
+                    <td>6</td>
+                    <td>London Calling</td>
+                </tr>
+                <tr>
+                    <th scope="row">The Damned</th>
+                    <td>1976</td>
+                    <td>10</td>
+                    <td>Smash it up</td>
+                </tr>
+                <tr>
+                    <th scope="row">Sex Pistols</th>
+                    <td>1975</td>
+                    <td>1</td>
+                    <td>Anarychy in the UK</td>
+                </tr>
+                <tr>
+                    <th scope="row">Sham 69</th>
+                    <td>1976</td>
+                    <td>13</td>
+                    <td>If the kids are united</td>
+                </tr>
+                <tr>
+                    <th scope="row">The Stranglers</th>
+                    <td>1974</td>
+                    <td>17</td>
+                    <td>No More Heroes</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th scope="row" colspan="2">Total albums</th>
+                    <td colspan="2">77</td>
+                </tr>
+            </tfoot>
+        </table>
+        <hr>
+        <pre>使用: border-collapse: collapse; 可以将边框合为一条</pre>
+        <pre>使用: caption-side: bottom; 这个属性被赋予了 bottom 值后标题就会被放置在表格的底部</pre>
+        <h3>表格样式小贴士</h3>
+        <ul>
+            <li>使您的表格标记尽可能简单，并且保持灵活性，例如使用百分比，这样设计就更有响应性。</li>
+            <li>使用 <b>table-layout: fixed</b> 创建更可控的表布局，可以通过在标题width中设置width来轻松设置列的宽度。</li>
+            <li>使用 <b>border-collapse: collapse</b> 使表元素边框合并，生成一个更整洁、更易于控制的外观</li>
+            <li>使用 &lt;thead&gt;,  &lt;tbody&gt;和 &lt;tfoot&gt; 将表格分割成逻辑块，并提供额外的应用CSS的地方，因此如果需要的话，可以更容易地将样式层叠在一起。</li>
+            <li>使用斑马线来让其他行更容易阅读。</li>
+            <li>使用 <b>text-align</b> 直线对齐您的<th>和<td>文本，使内容更整洁、更易于跟随。</li>
+        </ul>
+    </div>
+</body>
+</html>

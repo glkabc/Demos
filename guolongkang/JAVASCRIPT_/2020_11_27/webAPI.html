@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/base.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h1>WebAPI</h1>
+        <h3>返回窗口大小</h3>
+        <pre>Window.innerWidth / Window.innerHeight</pre>
+        <h3>获取dom元素</h3>
+        <p>推荐使用 <b>Document.querySelector()</b> 来获取页面上的节点</p>
+        <p>如果想对多个元素进行操作可以使用 <b>Domcument.querySelectorAll()</b></p>
+        <p>对于获取元素引用，还有一些更旧的方法</p>
+        <ul>
+            <li><b>Document.getElementById()</b>: 选择一个id属性值已知的元素</li>
+            <pre>var elementRef = document.getElementById('myId')</pre>
+            <li><b>Document.getElementsByTagName()</b>: 返回页面中包含的所有已知类型元素的数组。</li>
+            <pre>var elementRefArray = document.getElementsByTagName('p')</pre>
+            <li>...</li>
+        </ul>
+        <h3>创建dom元素</h3>
+        <ol>
+            <li><b>document.creatElement('p')</b>: 创建一个P标签</li>
+            <pre>let p = document.createElement('p');</pre>
+            <li><b>p.textContent = 'hello'</b>: 为标签添加内容</li>
+            <pre>p.textContent = 'hello'</pre>
+            <li><b>parentNode.appendChild('p')</b>: 将创建的标签添加到父节点里</li>
+            <pre>div.appendChild('p')</pre>
+        </ol>
+        <h3>移动或删除元素</h3>
+        <ul>
+            <li><b>appendChild()</b>: 添加元素</li>
+            <pre>sect.appendChild(linkPara);</pre>
+            <li><b>removeChild()</b>: 删除元素</li>
+            <pre>sect.removeChild(linkPara);</pre>
+            <p>要删除一个仅基于自身引用的节点可能稍微有点复杂，这也是很常见的。没有方法会告诉节点删除自己，所以你必须像下面这样操作。</p>
+            <pre>linkPara.parentNode.removeChild(linkPara);</pre>
+        </ul>
+        <h3>Dom操作样式</h3>
+        <ol>
+            <li><pre>para.setAttribute('class', 'highlight'); // 通过添加预先写好的样式。</pre></li>
+            <li><pre>div.style.backgroundColor = 'red'; // 通过API直接修改样式</pre></li>
+        </ol>
+    </div>
+    <!-- <script type="text/javascript" src="https://maps.google.com/maps/API/js?key=AIzaSyDDuGt0E5IEGkcE6ZfrKfUtE9Ko_de66pA"></script>
+    <script>
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var latlng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+            var myOptions = {
+                zoom: 8,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.TERRAIN,
+                disableDefaultUI: true
+            }
+            var map = new google.maps.Map(document.querySelector("#map_canvas"), myOptions);
+        });
+    </script> -->
+    <script>
+
+    </script>
+</body>
+</html>

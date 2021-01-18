@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Table template</title>
+    <!-- <link href="./css/minimal-table.css" rel="stylesheet" type="text/css"> -->
+    <style>
+        html {
+          font-family: sans-serif;
+        }
+
+        table {
+          border-collapse: collapse;
+          border: 2px solid rgb(200,200,200);
+          letter-spacing: 1px;
+          font-size: 0.8rem;
+        }
+
+        td, th {
+          border: 1px solid rgb(190,190,190);
+          padding: 10px 20px;
+        }
+
+        td {
+          text-align: center;
+        }
+
+        caption {
+          padding: 10px;
+        }
+    </style>
+  </head>
+  <body>
+    <!-- <h1>Personal pronouns table</h1>
+    <table>
+     <caption>Personal pronouns</caption>
+      <tr>
+       <td colspan="3">&nbsp;</td>
+       <th scope="col">Subject</th>
+       <th scope="col">Object</th>
+      </tr>
+      <tr>
+       <th rowspan="5" scope="rowgroup">Singular</th>
+       <th colspan="2" scope="row">1st Person</th>
+       <td>I</td>
+       <td>me</td>
+      </tr>
+      <tr>
+       <th colspan="2" scope="row">2nd Person</th>
+       <td>you</td>
+       <td>you</td>
+      </tr>
+      <tr>
+       <th rowspan="3" scope="rowgroup">3rd Person</th>
+       <th class="symbol" scope="row">♂</th>
+       <td>he</td>
+       <td>him</td>
+      </tr>
+      <tr>
+       <th class="symbol" scope="row">♀</th>
+       <td>she</td>
+       <td>her</td>
+      </tr>
+      <tr>
+       <th class="symbol" scope="row">o</th>
+       <td>it</td>
+       <td>it</td>
+      </tr>
+      <tr>
+       <th rowspan="3" scope="rowgroup">Plural</th>
+       <th colspan="2" scope="row">1st Person</th>
+       <td>we</td>
+       <td>we</td>
+      </tr>
+      <tr>
+       <th colspan="2" scope="row">2nd Person</th>
+       <td>you</td>
+       <td>you</td>
+      </tr>
+      <tr>
+       <th colspan="2" scope="row">3rd Person</th>
+       <td>they</td>
+       <td>they</td>
+      </tr>
+    </table> -->
+    <table>
+        <colgroup>
+            <col>
+            <col style="background-color: blue;" span="2">
+        </colgroup>
+        <tr>
+            <th>Hi 1</th>
+            <th>Hi 2</th>
+            <th>Hi 3</th>
+            <th>Hi 4</th>
+        </tr>
+        <tr>
+            <td>Hi, I'm your first cell.</td>
+            <td>Hi, I'm your second cell.</td>
+            <td>Hi, I'm your third cell.</td>
+            <td>Hi, I'm your fourth cell.</td>
+        </tr>
+        <tr>
+            <td>你好啊</td>
+            <td>hhahahahahahahahah</td>
+            <td>hhahahahahahahahah</td>
+            <td>hhahahahahahahahah</td>
+        </tr>
+    </table>
+
+    <br>
+    <hr>
+    <br>
+    
+    <table>
+        <colgroup>
+            <!-- <col> -->
+            <col style="background-color: blue;" span="2">
+        </colgroup>
+        <tr>
+            <th colspan="2">Animals</th>
+        </tr>
+        <tr>
+          <th colspan="2">Hippopotamus</th>
+        </tr>
+        <tr>
+          <th rowspan="2">Horse</th>
+          <td>Mare</td>
+        </tr>
+        <tr>
+          <td>Stallion</td>
+        </tr>
+        <tr>
+          <th colspan="2">Crocodile</th>
+        </tr>
+        <tr>
+          <th rowspan="2">Chicken</th>
+          <td>Hen</td>
+        </tr>
+        <tr>
+          <td>Rooster</td>
+        </tr>
+    </table>
+
+    <br>
+    <hr>
+    <br>
+    
+    <h1>School timetable</h1>
+    <table>
+        <caption>这是一个语言老师的课程表</caption>
+        <colgroup>
+            <col>
+            <col>
+            <col style="background-color: #97DB9A;">
+            <col style="width: 42px;">
+            <col style="background-color: #97DB9A;">
+            <col style="background-color: #DCC48E; border: 4px solid #C1437A">
+            <col style="width: 42px;" span="2">
+        </colgroup>
+        <tr>
+            <th></th>
+            <th>Mon</th>
+            <th>Tues</th>
+            <th>Wed</th>
+            <th>Thurs</th>
+            <th>Fri</th>
+            <th>Sat</th>
+            <th>Sun</th>
+        </tr>
+        <tr>
+            <th>1st period</th>
+            <td>English</td>
+            <td></td>
+            <td></td>
+            <td>German</td>
+            <td>Dutch</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>2nd period</th>
+            <td>English</td>
+            <td>English</td>
+            <td></td>
+            <td>German</td>
+            <td>Dutch</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>3rd period</th>
+            <td></td>
+            <td>English</td>
+            <td></td>
+            <td>German</td>
+            <td>Dutch</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>4rd period</th>
+            <td></td>
+            <td>English</td>
+            <td></td>
+            <td>German</td>
+            <td>Dutch</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+  </body>
+</html>

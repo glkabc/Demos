@@ -1,0 +1,12 @@
+.indexInput {
+    margin: 20px 10px;
+    height: 30px;
+    display: flex;
+}
+.indexInput input {
+    flex:8;
+    margin-right: 10px;
+}
+.indexInput button {
+    flex: 2;
+}

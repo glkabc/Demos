@@ -1,0 +1,59 @@
+body {
+    background-color: #fff;
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 1em;
+    margin: 0;
+  }
+
+  h1 {
+    color: hotpink;
+    font-size: 2em;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    border-bottom: 1px solid #375e97;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  .job-title {
+    color: #999999;
+    font-weight: bold;
+  }
+
+  a:link,
+  a:visited {
+    color: #fb6542;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  h1 {
+      border-bottom: 10px dotted purple; /*点线边框*/
+      border-left: 5px double purple; /*双线边框*/
+      border-top: 1px dashed purple;  /*虚线边框*/
+      border-right: 1px solid purple;
+  }
+
+  h2 {
+      font-style: italic;
+  }
+
+  ul {
+      border: 5px solid purple;
+      padding: 30px;
+      background-color: #eee;
+      list-style-type: square;
+  }
+
+  a:hover {
+      color: green;
+  }
+
+  .job-title:hover {
+      /* font-size: 30px; */
+      font-style: oblique;
+  }

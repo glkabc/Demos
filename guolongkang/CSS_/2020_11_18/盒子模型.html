@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/base.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h1>什么是盒子模型</h1>
+        <p>完整的 CSS 盒模型应用于块级盒子，内联盒子只使用盒模型中定义的部分内容。模型定义了盒的每个部分 —— margin, border, padding, and content —— 合在一起就可以创建我们在页面上看到的内容。为了增加一些额外的复杂性，有一个标准的和替代（IE）的盒模型。</p>
+        <h2>盒子模型的各部分</h2>
+        <ul>
+            <li><b>Content box</b>:这个区域是用来显示内容，大小可以通过设置宽度和高度</li>
+            <li><b>Pdding box</b>: 包围在内容区域外部的空白区域； 大小通过 padding 相关属性设置</li>
+            <li><b>Border box</b>:边框盒包裹内容和内边距。大小通过 border 相关属性设置</li>
+            <li><b>Margin box</b>: 这是最外面的区域，是盒子和其他元素之间的空白区域。大小通过 margin 相关属性设置</li>
+        </ul>
+        <hr>
+        <h2>标准盒模型</h2>
+        <p>在标准模型中，如果你给盒设置 width 和 height，实际设置的是 content box。 padding 和 border 再加上设置的宽高一起决定整个盒子的大小</p>
+        <hr>
+        <h2>(替代)IE盒模型</h2>
+        <p>所有宽度都是可见宽度，所以内容宽度是该宽度减去边框和填充部分</p>
+        <pre>如果想变成IE盒子模型：
+
+box-sizing: border-box;
+
+要替换所有的话可以：
+
+*, *::before, *::after {
+    box-sizing: inherit;
+  }
+        </pre>
+        <hr>
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+html {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 10px;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+ol, ul, dl, p {
+    font-size: 1.5rem;
+}
+
+li, p {
+    line-height: 1.5;
+}
+
+dd, dl {
+    line-height: 1.5;
+}
+
+dt {
+    font-weight: bold;
+}
+
+dd {
+    margin-bottom: 1.5rem;
+}
+
+/* 
+
+设置 ul 下的项目符号为罗马数字 
+
+使用 list-style-position 设置项目符号出现在列表内还是出现在列表外，默认是列表外（outside）
+
+也可以使用 list-style-image 属性来自己定义一个自己的图标
+    list-style-image: url('strat.png')
+
+还可以使用背景图
+    ul {
+    padding-left: 2rem;
+    list-style-type: none;
+    }
+
+    ul li {
+    padding-left: 2rem;
+    background-image: url(star.svg);
+    background-position: 0 0;
+    background-size: 1.6rem 1.6rem;
+    background-repeat: no-repeat;
+    }
+
+*/
+ul {
+    list-style-type: inherit;
+    list-style-position: inside;
+    text-decoration: none;
+}
+

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <svg version="1.1"
+         baseProfile="full"
+         width="300"
+         height="200"
+         xmlns="http://www.w3.org/2000/svg">
+    <rect width="100%" height="100%" fill="black"></rect>
+    <circle cx="150" cy="100" r="90" fill="blue"></circle>
+    </svg>
+
+    <svg width="300" height="200">
+        <rect width="100%" height="100%" fill="green"></rect>
+    </svg>
+
+    <svg width="100%" height="300">
+        <rect width="100%" height="100%" fill="blue"></rect>
+        <polygon points="150,50 250,250 50,250" fill="yellow">
+            <animateTransform attributeName="transform"
+                          attributeType="XML"
+                          type="rotate"
+                          from="150 150 100"
+                          to="360 60 100"
+                          dur="5s"
+                          repeatCount="indefinite"/>
+        </polygon>
+        <text x="400" y="150" font-family="Verdana" font-size="55"
+            fill="white" stroke="black" stroke-width="2">
+            你好!
+        </text>
+    </svg>
+</body>
+</html>

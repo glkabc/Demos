@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/base.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h2>创建一个对象</h2>
+        <h3>Object.create()</h3>
+        <pre>var person2 = Object.create(person1)</pre>
+        <p>create在创建对象时，是将__proto__指向依据的对象上</p>
+        <h3>constructor属性</h3>
+        <p>每个实例对象都从原型中继承了一个constructor属性，该属性指向了用于构造此实例对象的构造函数。</p>
+        <hr>
+        <h2>原型式的继承</h2>
+        <p><b>call()</b> 这个函数允许您调用一个在这个文件里别处定义的函数。第一个参数指明了在您运行这个函数时想对“this”指定的值，也就是说，您可以重新指定您调用的函数里所有“this”指向的对象。其他的变量指明了所有目标函数运行时接受的参数。</p>
+        <pre>Person.call(this, first, last, age, gender, interests);</pre>
+        <pre class="warning">注：在这个例子里我们在创建一个新的对象实例时同时指派了继承的所有属性，但是注意您需要在构造器里将它们作为参数来指派，即使实例不要求它们被作为参数指派（比如也许您在创建对象的时候已经得到了一个设置为任意值的属性）</pre>
+
+    </div>
+    <script>
+        function doSomething(){}
+
+        console.dir(doSomething) // 构造器本身
+        doSomething.prototype.foo = function () {
+            console.log("你好");
+        };
+
+        var doSomeInstancing = new doSomething();
+        console.dir(doSomeInstancing)  // 构造器dosomething 下的prototype
+        console.log(doSomeInstancing)  // 构造函数dosomething() 下的prototype
+
+        doSomeInstancing.prop = "some value";
+        console.log("doSomeInstancing.prop:      " + doSomeInstancing.prop);
+        console.log("doSomeInstancing.foo:       " + doSomeInstancing.foo);
+        console.log("doSomething.prop:           " + doSomething.prop);
+        console.log("doSomething.foo:            " + doSomething.foo); // 构造器下没有foo 构造器 prototype 下有
+        console.log("doSomething.prototype.prop: " + doSomething.prototype.prop);
+        console.log("doSomething.prototype.foo:  " + doSomething.prototype.foo);
+    </script>
+    <script>
+        function Person(first, last, age, gender, interests) {
+            this.name = {
+            first,
+            last
+            };
+            this.age = age;
+            this.gender = gender;
+            this.interests = interests;
+        };
+
+        Person.prototype.bio = function() {
+            let string = this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. ';
+            let pronoun;
+
+            if(this.gender === 'male' || this.gender === 'Male' || this.gender === 'm' || this.gender === 'M') {
+                pronoun = 'He likes ';
+            } else if(this.gender === 'female' || this.gender === 'Female' || this.gender === 'f' || this.gender === 'F') {
+                pronoun = 'She likes ';
+            } else {
+                pronoun = 'They like ';
+            }
+
+            string += pronoun;
+
+            if(this.interests.length === 1) {
+                string += this.interests[0] + '.';
+            } else if(this.interests.length === 2) {
+                string += this.interests[0] + ' and ' + this.interests[1] + '.';
+            } else {
+                for(let i = 0; i < this.interests.length; i++) {
+                    if(i === this.interests.length - 1) {
+                        string += 'and ' + this.interests[i] + '.';
+                    } else {
+                        string += this.interests[i] + ', ';
+                    }
+                }
+            }
+
+            alert(string);
+        };
+
+        function Teacher(first, last, age, gender, interests, subject) {
+            Person.call(this, first, last, age, gender, interests);
+
+            this.subject = subject;
+        }
+
+        // 实现继承的方法
+        Teacher.prototype = Object.create(Person.prototype);
+        Teacher.prototype.constructor = Teacher;
+
+        Teacher.prototype.greeting = function () {
+            var prefix;
+
+            if(this.gender === 'male' || this.gender === 'Male' || this.gender === 'm' || this.gender === 'M') {
+                prefix = 'Mr.';
+            } else if(this.gender === 'female' || this.gender === 'Female' || this.gender === 'f' || this.gender === 'F') {
+                prefix = 'Mrs.';
+            } else {
+                prefix = 'Mx.';
+            }
+
+            alert('Hello. My name is ' + prefix + ' ' + this.name.last + ', and I teach ' + this.subject + '.');
+        }
+
+        console.dir(Teacher)
+
+
+
+
+
+        Person.prototype.greeting = function() {
+            alert('Hi! I\'m ' + this.name.first + '.');
+        };
+
+        Person.prototype.farewell = function() {
+            alert(this.name.first + ' has left the building. Bye for now!');
+        }
+
+        let person1 = new Person('Tammi', 'Smith', 17, 'female', ['music', 'skiing', 'kickboxing']);
+        let teacher1 = new Teacher('Dave', 'Griffiths', 31, 'male', ['football', 'cookery'], 'mathematics');
+        // teacher1.name.first;
+        // teacher1.interests[0];
+        // teacher1.bio();
+        // teacher1.subject;
+        // teacher1.greeting();
+    </script>
+</body>
+</html>
