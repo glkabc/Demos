@@ -14,15 +14,20 @@ Vue.use(VueRouter)
 
 let routes = [
   {
-    path: '/',
-    redirect: '/home'
+    path: '',
+    redirect: '/home',
+    meta: {
+      title: '主页',
+      selected: '1'
+    }
   },
   {
     path: '/home',
     name: '主页',
     component: () => import('../components/HelloWorld'),
     meta: {
-      title: '主页'
+      title: '主页',
+      selected: '1'
     }
   },
   {
@@ -30,7 +35,17 @@ let routes = [
     name: '我的夏季',
     component: () => import('../components/options'),
     meta: {
-      title: '我的 | 我的夏季'
+      title: '我的 | 我的夏季',
+      selected: '3'
+    }
+  },
+  {
+    path: '/option1',
+    name: '我的夏季1',
+    component: () => import('../components/options1'),
+    meta: {
+      title: '我的 | 我的夏季1',
+      selected: '3'
     }
   },
   {
@@ -38,24 +53,38 @@ let routes = [
     name: '图片展示',
     component: () => import('../components/card'),
     meta: {
-      title: '我的 | 图片展示 | 我的冬季'
+      title: '我的 | 图片展示 | 我的冬季',
+      selected: '4'
+    }
+  },
+  {
+    path: '/test',
+    name: '文本展示',
+    component: () => import('../components/text'),
+    meta: {
+      title: '文本展示',
+      selected: '5'
     }
   },
   {
     path: '*',
     name: 'NotFound',
-    component: () => import('../components/NoFound')
+    component: () => import('../components/NoFound'),
+    meta: {
+      selected: '7'
+    }
   }
 ]
 
 let router = new VueRouter({
   mode: 'history',
-  routes
+  routes,
+  linkActiveClass: 'active'
 })
 
 
 router.beforeEach((to, from, next) => {
-  console.log(to)
+  // console.log(to)
   if (to.meta.title) {
     document.title = to.meta.title
   } else {
