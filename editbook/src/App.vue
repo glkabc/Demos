@@ -29,32 +29,36 @@
           <a-layout-sider width="200" style="background: #fff">
             <a-menu
               mode="inline"
-              :default-selected-keys="['1']"
-              :default-open-keys="['sub1']"
+              :default-selected-keys="[selected]"
+              :default-open-keys="[openSelected]"
               style="height: 100%"
+              @openChange = "openSelecte"
             >
-              <a-menu-item key="1" @click="$router.replace({name: '主页'})">
+              <a-menu-item key="1" @click="$router.push({name: '主页'})">
                 <a-icon type="home" />
                 <span>主页</span>
               </a-menu-item>
-              <a-sub-menu key="sub2">
+              <a-sub-menu key="sub1">
                 <span slot="title"><a-icon type="user" />我的</span>
-                <a-menu-item key="4" @click="$router.replace({name: '我的夏季'})">
+                <a-menu-item key="3" @click="$router.push({name: '我的夏季'})">
                   我的夏季
                 </a-menu-item>
-                <a-menu-item key="2" @click="$router.replace({name: '图片展示'})">
+                <a-menu-item key="9" @click="$router.push({name: '我的夏季1'})">
+                  我的夏季1
+                </a-menu-item>
+                <a-menu-item key="4" @click="$router.push({name: '图片展示'})">
                   我的冬季
                 </a-menu-item>
               </a-sub-menu>
-              <a-sub-menu key="sub3">
+              <a-sub-menu key="sub2">
                 <span slot="title"><a-icon type="laptop" />电脑</span>
-                <a-menu-item key="5">
+                <a-menu-item key="5" @click="$router.push({name: '文本展示'})">
                   option5
                 </a-menu-item>
               </a-sub-menu>
-              <a-sub-menu key="sub4">
+              <a-sub-menu key="sub3">
                 <span slot="title"><a-icon type="notification" />喇叭</span>
-                <a-menu-item key="9" @click="$router.push({name: 'NotFound'})">
+                <a-menu-item key="7" @click="$router.push({name: 'NotFound'})">
                   NotFoundPage
                 </a-menu-item>
               </a-sub-menu>
@@ -79,6 +83,40 @@ export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  data() {
+    return {
+      selected: '1',
+      openSelected: '1'
+    }
+  },
+  watch: {
+    $route: function (t, o) {
+        console.log(t, 'to')
+        console.log(o, 'old')
+    }
+  },
+  methods: {
+    openSelecte(e) {
+      console.log(e, 'sssssss')
+      if (e.length >= 2) {
+        this.openSelected = e[e.length-1]
+      } else {
+        this.openSelected = ''
+      }
+    },
+    onOpenChange(openKeys) {
+      const latestOpenKey = openKeys.find(key => this.openKeys.indexOf(key) === -1);
+      if (this.rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
+        this.openKeys = openKeys;
+      } else {
+        this.openKeys = latestOpenKey ? [latestOpenKey] : [];
+      }
+    },
+  },
+  created() {
+    let routers = this.$route
+    console.log(routers)
   }
 }
 </script>
