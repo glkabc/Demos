@@ -84,16 +84,16 @@ export default {
       drag:false,
       //定义要被拖拽对象的数组
       arr1:[
-        {id:1,name:'www.itxst.com'},
-        {id:2,name:'www.jd.com'},
-        {id:3,name:'www.baidu.com'},
-        {id:3,name:'www.taobao.com'}
+          {id:1,name:'www.itxst.com'},
+          {id:2,name:'www.jd.com'},
+          {id:3,name:'www.baidu.com'},
+          {id:3,name:'www.taobao.com'}
         ],
-        arr2:[
-        {id:1,name:'www.google.com'},
-        {id:2,name:'www.msn.com'},
-        {id:3,name:'www.ebay.com'},
-        {id:4,name:'www.yahoo.com'}
+      arr2:[
+          {id:1,name:'www.google.com'},
+          {id:2,name:'www.msn.com'},
+          {id:3,name:'www.ebay.com'},
+          {id:4,name:'www.yahoo.com'}
         ] 
     };
   },
