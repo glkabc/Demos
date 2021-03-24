@@ -58,6 +58,15 @@ let routes = [
     }
   },
   {
+    path: '/page-show',
+    name: '页面展示',
+    component: () => import('../components/pageShow'),
+    meta: {
+      title: '我的电脑 | 页面展示',
+      selected: '6'
+    }
+  },
+  {
     path: '/test',
     name: '文本展示',
     component: () => import('../components/text'),

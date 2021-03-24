@@ -12,16 +12,22 @@
   <hr/>
   <div id="app"></div>
   <hr/>
-  <form action="http://10.7.100.154:3630/my/home/add" onsubmit="return func()">
+  <!-- <form action="http://10.7.100.154:3630/my/home/add" onsubmit="return func()"> -->
+  <form action="http://10.7.100.154:3630/my/test/add-more" onsubmit="return func()">
     姓名：<input type="text" value="" name="name">
     性别：<input type="text" value="" name="sex">
     年龄：<input type="text" value="" name="age">
-    描述：<input type="text" value="" name="miaoshu">
+    描述：<input type="text" value="" name="description">
+    高度：<input type="text" value="" name="height">
+    宽度：<input type="text" value="" name="width">
+    颜色：<input type="text" value="" name="color">
     <button type="submit">提交数据</button>
   </form>
   <hr/>
     <input id="search" type="text" value="">
     <button id="searchButton">年龄查询</button>
+  <hr/>
+  <img src="http://10.7.100.154:3630/static/1.jpg" alt="" style="width: 240px;">
   <hr/>
   
   <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
@@ -38,7 +44,7 @@
         const data = res
         let UI = '======> '
         data.forEach(element => {
-          UI += `<p>姓名：${element.name} -- 年龄：${element.age} -- 性别 </p>`
+          UI += `<p>姓名：${element.name} -- 年龄：${element.age} -- 性别：${element.sex} </p>`
         });
         dom.innerHTML = UI
       })
@@ -49,7 +55,7 @@
       $.post('http://10.7.100.154:3630/my/test/post', { name: '小明' }, (data, state) => {
         let UI = '======> '
         data.forEach(element => {
-          UI += `<p>姓名：${element.name} -- 年龄：${element.age} -- 性别: ${element.sex} -- 描述：${element.miaoshu} </p>`
+          UI += `<p>姓名：${element.name} -- 年龄：${element.age} -- 性别: ${element.sex} -- 描述：${element.description} </p>`
         });
         dom.innerHTML = UI
       })
@@ -62,7 +68,7 @@
         const data = res.data
         let UI = '======> '
         data.forEach(element => {
-          UI += `<p>姓名：${element.name} -- 年龄：${element.age} -- 性别 </p>`
+          UI += `<p>姓名：${element.name} -- 年龄：${element.age} -- 性别：${element.sex} -- 描述：${element.description} -- 高度：${element.height} -- 宽度：${element.height} -- 颜色：${element.color} </p>`
         });
         dom.innerHTML = UI
       })

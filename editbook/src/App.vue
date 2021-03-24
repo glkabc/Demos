@@ -55,6 +55,9 @@
                 <a-menu-item key="5" @click="$router.push({name: '文本展示'})">
                   option5
                 </a-menu-item>
+                <a-menu-item key="6" @click="$router.push({name: '页面展示'})">
+                  option6
+                </a-menu-item>
               </a-sub-menu>
               <a-sub-menu key="sub3">
                 <span slot="title"><a-icon type="notification" />喇叭</span>
