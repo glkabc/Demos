@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <el-menu 
+    <!-- <el-menu 
       :default-active="activeIndex" 
       class="el-menu-demo"
       background-color="#fff"
@@ -13,82 +13,68 @@
       <el-menu-item index="3">动物</el-menu-item>
       <el-menu-item index="4">游戏</el-menu-item>
       <el-menu-item index="5">美食</el-menu-item>
-    </el-menu>
+    </el-menu> -->
+    <a-layout id="components-layout-demo-top-side-2">
+      <a-layout-header class="header">
+        <div id="logo">
+          <a-icon type="slack" /> <a-icon type="slack" /> <a-icon type="slack" /> <a-icon type="slack" /> <a-icon type="slack" /> <a-icon type="slack" />
+        </div>
+        <a-menu
+          mode="horizontal"
+          :default-selected-keys="['2']"
+        >
+          <a-menu-item key="1">
+            <a-icon type="home" />
+            首页
+          </a-menu-item>
+          <a-menu-item key="2">
+            <a-icon type="desktop" />
+            桌面
+          </a-menu-item>
+          <a-menu-item key="3">
+            <a-icon type="mobile" />
+            手机
+          </a-menu-item>
+        </a-menu>
+        <!-- <div class="User">
+          <a-dropdown :trigger="['click']">
+            <a class="ant-dropdown-link" @click="e => e.preventDefault()">
+              <a-avatar icon="user" style="margin-right: 15px" />
+              <span>admin</span>
+              <a-icon type="down" style="padding-left: 10px; color: #fff" />
+            </a>
+            <a-menu slot="overlay" :getPopupContainer="(triggerNode) => triggerNode.parentNode" style="margin-top: 10px">
+              <a-menu-item>
+                <a href="javascript:;"><a-icon type="user" style="padding-right: 10px" />我的</a>
+              </a-menu-item>
+              <a-menu-item>
+                <a href="javascript:;"><a-icon type="export" style="padding-right: 10px" />退出登录</a>
+              </a-menu-item>
+            </a-menu>
+          </a-dropdown>
+        </div> -->
+      </a-layout-header>
+    </a-layout>
+    <div class="nav">
+      <a-menu v-model="current" mode="horizontal">
+        <a-menu-item key="mail"> <a-icon type="mail" />动漫</a-menu-item>
+        <a-menu-item key="app" > <a-icon type="appstore" />风景</a-menu-item>
+        <a-menu-item key="app2" > <a-icon type="appstore" />风景</a-menu-item>
+        <a-menu-item key="app3" > <a-icon type="appstore" />风景</a-menu-item>
+        <a-menu-item key="app4" > <a-icon type="appstore" />风景</a-menu-item>
+        <a-menu-item key="app5" > <a-icon type="appstore" />风景</a-menu-item>
+        <a-menu-item key="app6" > <a-icon type="appstore" />风景</a-menu-item>
+        <a-menu-item key="alipay">
+          <a href="#" target="_blank" rel="noopener noreferrer"
+            ><a-icon type="appstore" />动物</a
+          >
+        </a-menu-item>
+      </a-menu>
+    </div>
     <div class="image-list">
-      <a-card hoverable style="width: 240px">
-      <img
-        slot="cover"
-        alt="example"
-        src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-      />
-      <a-card-meta title="Europe Street beat">
-        <template slot="description">
-          www.instagram.com
-        </template>
-      </a-card-meta>
-      </a-card>
-      <a-card hoverable style="width: 240px">
-      <img
-        slot="cover"
-        alt="example"
-        src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-      />
-      <a-card-meta title="Europe Street beat">
-        <template slot="description">
-          www.instagram.com
-        </template>
-      </a-card-meta>
-      </a-card>
-      <a-card hoverable style="width: 240px">
-      <img
-        slot="cover"
-        alt="example"
-        src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-      />
-      <a-card-meta title="Europe Street beat">
-        <template slot="description">
-          www.instagram.com
-        </template>
-      </a-card-meta>
-      </a-card>
-      <a-card hoverable style="width: 240px">
-      <img
-        slot="cover"
-        alt="example"
-        src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-      />
-      <a-card-meta title="Europe Street beat">
-        <template slot="description">
-          www.instagram.com
-        </template>
-      </a-card-meta>
-      </a-card>
-      <a-card hoverable style="width: 240px">
-      <img
-        slot="cover"
-        alt="example"
-        src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-      />
-      <a-card-meta title="Europe Street beat">
-        <template slot="description">
-          www.instagram.com
-        </template>
-      </a-card-meta>
-      </a-card>
-      <a-card hoverable style="width: 240px">
-      <img
-        slot="cover"
-        alt="example"
-        src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-      />
-      <a-card-meta title="Europe Street beat">
-        <template slot="description">
-          www.instagram.com
-        </template>
-      </a-card-meta>
-      </a-card>
+      
       <el-upload
-        :limit='1'
+        limit='1'
         drag
         action="https://jsonplaceholder.typicode.com/posts/"
         multiple>
@@ -102,7 +88,7 @@
         :default-current="6" 
         :total="total"
         :hideOnSinglePage='true'
-        v-model="current"
+        v-model="currentPage"
         @change='pageChange'
       />
     </div>
@@ -114,9 +100,10 @@ export default {
   name:  'pageShow',
   data() {
     return {
+      current: ['mail'],
       activeIndex: '1',
       activeIndex2: '1',
-      current: 5,
+      currentPage: 5,
       total: 20,
     }
   },
@@ -135,6 +122,33 @@ export default {
 </script>
 
 <style scoped lang="scss">
+#components-layout-demo-top-side-2 {
+  width: 100%;
+  height: 64px;
+  background: rgba(255, 255, 255, 1);
+  .header {
+    background-color: #fff;
+    padding: 0px;
+    height: 58px;
+    display: flex;
+    #logo {
+      line-height: 20px;
+      margin-right: 20px;
+      float: left;
+    }
+    ul {
+      border: 0;
+    }
+    .User {
+        float: right;
+        line-height: 20px;
+        span {
+          color: #000;
+          font-size: 16px;
+        }
+      }
+  }
+}
 .container {
   position: relative;
   height: 100%;
@@ -155,5 +169,30 @@ export default {
     padding: 20px;
   }
 }
-  
+
 </style>
+
+<style lang="scss" scoped>
+.nav {
+  padding: 10px;
+  .ant-menu-horizontal {
+    border: 0px;
+    line-height: 30px;
+    padding: 0 5px;
+  }
+  .ant-menu-item {
+    border: 2px solid #fff;
+    border-radius: 10px;
+    margin: 0px 5px;
+  }
+  .ant-menu-item-selected {
+    color: #1890ff;
+    border: 2px solid #1890ff;
+  }
+  .ant-menu-item-active {
+    color:#99cbfa;
+    border: 2px solid #99cbfa;
+    background-color: #ffffff;
+  }
+}
+</style>>

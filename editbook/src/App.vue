@@ -21,7 +21,6 @@
               </a-menu-item>
             </a-menu>
           </a-dropdown>
-          
         </div>
       </a-layout-header>
       <a-layout-content style="padding: 20px 30px 0px">
