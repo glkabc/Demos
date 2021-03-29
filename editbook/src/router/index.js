@@ -76,6 +76,11 @@ let routes = [
     }
   },
   {
+    path: '/UpLoadImage',
+    name: '上传图片',
+    component: () => import('../components/upload')
+  },
+  {
     path: '*',
     name: 'NotFound',
     component: () => import('../components/NoFound'),

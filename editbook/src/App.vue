@@ -63,6 +63,9 @@
                 <a-menu-item key="7" @click="$router.push({name: 'NotFound'})">
                   NotFoundPage
                 </a-menu-item>
+                <a-menu-item key="8" @click="$router.push({name: '上传图片'})">
+                  上传页面
+                </a-menu-item>
               </a-sub-menu>
             </a-menu>
           </a-layout-sider>
