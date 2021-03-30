@@ -90,10 +90,10 @@ export default {
         const cv = document.createElement('canvas')
         this.imageWidth = image.width
         this.imageHeight = image.height
-        cv.width = image.width
-        cv.height = image.height
+        cv.width = 100
+        cv.height = 50
         const cvs = cv.getContext('2d')
-        cvs.drawImage(image, 0, 0, image.width, image.height);
+        cvs.drawImage(image, 0, 0, 100, 50);
         cvs.font="30px Arial";
         cvs.strokeText('这是水印', image.width - 125, image.height - 10)
         cvs.fillText('你好', 20, 40)
@@ -109,9 +109,6 @@ export default {
       const image = new Image()
       image.setAttribute('crossOrigin', 'anonymous')
       image.onload = () => {
-        console.log(image)
-        console.log(image.width, '图片宽度')
-        console.log(image.height, '图片高度')
         const cv = document.createElement('canvas')
         cv.width = image.width
         cv.height = image.height
@@ -124,8 +121,8 @@ export default {
         this.imgSrc = cv.toDataURL('/image/png')
         // console.log(this.$refs.box)
       }
-      this.$message.error('图片上传失败')
       image.src = URL.createObjectURL(file.raw)
+      this.$message.error('图片上传失败')
     },
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
@@ -155,11 +152,11 @@ export default {
 </script>
 
 <style>
-#imgStyle{
+/* #imgStyle{
   width: 350px;
   height: 200px;
   background-color: #000;
-}
+} */
 .upload-demo {
   margin: 0px auto;
 }

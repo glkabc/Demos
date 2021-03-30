@@ -81,6 +81,11 @@ let routes = [
     component: () => import('../components/upload')
   },
   {
+    path: '/administrator',
+    name: '图片管理',
+    component: () => import('../components/upLoadImageList')
+  },
+  {
     path: '*',
     name: 'NotFound',
     component: () => import('../components/NoFound'),

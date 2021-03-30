@@ -67,6 +67,33 @@
                   上传页面
                 </a-menu-item>
               </a-sub-menu>
+              <a-sub-menu key="sub4">
+                <span slot="title"><a-icon type="desktop" />PC</span>
+                <a-menu-item key="9" @click="$router.push({name: '上传图片'})">
+                  <a-icon type="picture" />上传PC图片
+                </a-menu-item>
+                <a-menu-item key="10" @click="$router.push({name: '图片管理'})">
+                  <a-icon type="tool" />pc图片管理
+                </a-menu-item>
+              </a-sub-menu>
+              <a-sub-menu key="sub5">
+                <span slot="title"><a-icon type="mobile" />phone</span>
+                <a-menu-item key="11" @click="$router.push({name: '上传图片'})">
+                  <a-icon type="picture" />上传手机图片
+                </a-menu-item>
+                <a-menu-item key="12" @click="$router.push({name: '图片管理'})">
+                  <a-icon type="tool" />手机图片管理
+                </a-menu-item>
+              </a-sub-menu>
+              <a-sub-menu key="sub6">
+                <span slot="title"><a-icon type="user" />用户管理</span>
+                <a-menu-item key="13" @click="$router.push({name: '上传图片'})">
+                  <a-icon type="user-add" />添加用户
+                </a-menu-item>
+                <a-menu-item key="14" @click="$router.push({name: 'NotFound'})">
+                  <a-icon type="tool" />用户管理
+                </a-menu-item>
+              </a-sub-menu>
             </a-menu>
           </a-layout-sider>
           <a-layout-content :style="{ padding: '10px 24px', minHeight: '280px' }">
