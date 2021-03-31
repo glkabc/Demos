@@ -7,8 +7,8 @@ import 'element-ui/lib/theme-chalk/index.css';
 import router from './router'
 
 Vue.config.productionTip = false
-Vue.use(Antd);
 Vue.use(Element);
+Vue.use(Antd);
 
 new Vue({
   render: h => h(App),

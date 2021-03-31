@@ -86,6 +86,11 @@ let routes = [
     component: () => import('../components/upLoadImageList')
   },
   {
+    path: '/userList',
+    name: 'userList',
+    component: () => import('../components/userList')
+  },
+  {
     path: '*',
     name: 'NotFound',
     component: () => import('../components/NoFound'),

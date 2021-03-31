@@ -90,7 +90,7 @@
                 <a-menu-item key="13" @click="$router.push({name: '上传图片'})">
                   <a-icon type="user-add" />添加用户
                 </a-menu-item>
-                <a-menu-item key="14" @click="$router.push({name: 'NotFound'})">
+                <a-menu-item key="14" @click="$router.push({name: 'userList'})">
                   <a-icon type="tool" />用户管理
                 </a-menu-item>
               </a-sub-menu>
