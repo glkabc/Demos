@@ -1,0 +1,79 @@
+.pageTitle {
+	font-size: 20px;
+	color: #333;
+}
+
+.toolbar {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	margin-bottom: 32px;
+}
+
+.grid {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	margin: -8px;
+}
+
+.grid > * {
+	padding: 8px;
+}
+
+.settingTitle {
+	flex-shrink: 0;
+	flex-basis: 100px;
+	font-weight: bolder;
+	color: #333;
+}
+
+.settingContent {
+	flex: 1;
+}
+
+.list {
+	width: 90%;
+	height: 300px;
+	/* overflow: auto; */
+}
+
+.addButton {
+	margin-bottom: 8px;
+	color:#38bdd3;
+	border:none;
+	cursor:pointer;
+	padding:0 5px;
+	vertical-align:top;
+
+}
+
+.deleteButton {
+	color: #f5222d;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	cursor: pointer;
+}
+
+.addSourceContainer {
+	width:200px;
+	height:80px;
+	display: flex;
+	flex-wrap: nowrap;
+}
+.settingIpt{
+	width:100px;
+	height:32px;
+	line-height:32px;
+	border:1px solid #d9d9d9;
+	text-align:center;
+}
+.eachly{
+	width:100%;
+	background:#edf2fd;
+	color:#82aeee;
+	margin-left:-16px;
+	height: 24px;
+	padding-left:10px;
+}

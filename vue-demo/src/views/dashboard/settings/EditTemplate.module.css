@@ -1,0 +1,53 @@
+.createButton {
+	margin: auto;
+	margin-top: 16px;
+	display: block;
+}
+
+.editorContainer {
+	height: 350px;
+}
+
+.labelCol {
+	display: inline-block;
+	overflow: hidden;
+	line-height: 39.9999px;
+	white-space: nowrap;
+	text-align: right;
+	vertical-align: middle;
+}
+
+.label {
+	position: relative;
+	color: #78909c;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.label::before {
+	display: inline-block;
+	margin-right: 4px;
+	color: #f5222d;
+	font-size: 14px;
+	font-family: SimSun, sans-serif;
+	line-height: 1;
+	content: '*';
+}
+
+.label::after {
+	content: ' ';
+	position: relative;
+	top: -0.5px;
+	margin: 0 8px 0 2px;
+}
+
+.insertBarContainer {
+	padding-top: 8px;
+	margin-bottom: 16px;
+}
+
+.pageTitle {
+	font-size: 32px;
+	color: #333;
+	margin-bottom: 48px;
+}

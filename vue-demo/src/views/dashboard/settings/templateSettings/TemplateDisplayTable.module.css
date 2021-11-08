@@ -1,0 +1,7 @@
+.button {
+	color: #4480ee;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	cursor: pointer;
+}

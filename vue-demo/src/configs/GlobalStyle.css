@@ -1,0 +1,91 @@
+/* Table组件表头背景色 */
+.ant-table .ant-table-thead {
+	background-color: #f5f5f5;
+}
+
+/* Table组件表头字体大小，粗细和颜色 */
+.ant-table .ant-table-thead th {
+	font-size: 12px;
+	font-weight: bold;
+	color: #84919e;
+}
+.ant-input-search-icon {
+	color: #4480ee;
+}
+
+/* Table组件tbody中字体大小，粗细和颜色 */
+.ant-table-body {
+	border-bottom: solid 1px #f0f0f0;
+}
+
+.ant-table tbody.ant-table-tbody td {
+	font-size: 12px;
+	color: #000;
+}
+.ant-input-group-addon {
+	background: #fff;
+}
+.ant-modal-header {
+	border-bottom: 0;
+}
+
+/* Table组件数据行斑马背景色效果 */
+.ant-table-wrapper.zebra .ant-table tbody.ant-table-tbody > tr:nth-child(even) {
+	background-color: #f5f8fb;
+}
+
+.ant-table-wrapper.zebra .ant-table tbody.ant-table-tbody > tr:nth-child(odd) {
+	background-color: #fff;
+}
+
+/* Form.Item组件 Label字体颜色，粗细和字号 */
+.ant-form-item .ant-form-item-label label {
+	color: #78909c;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+/* Select组件，选中的值为蓝色，不加粗 */
+.ant-select-dropdown-menu-item-selected,
+.ant-select-dropdown-menu-item-selected:hover {
+	color: #1478e3;
+	font-weight: 400;
+}
+.no-border-tag {
+	padding: 0!important;
+	border: none!important;
+	background: none!important;
+	font-size: 13px!important;
+  }
+  .link-type,
+  .link-type:focus {
+	color: #337ab7;
+	cursor: pointer;
+  }
+  .link-type,
+  .link-type:hover {
+	color: rgb(32, 160, 255);
+  }
+  .cut{
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+  }
+
+
+/* 自定义滚动条 */
+/* * {
+	scrollbar-width: thin;
+	scrollbar-color: rgba(0, 0, 0, 0.34) #fff;
+}
+*::-webkit-scrollbar {
+	width: 5px;
+	height: 12px;
+}
+*::-webkit-scrollbar-track {
+	background: #fff;
+}
+*::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, 0.34);
+	border-radius: 6px;
+} */

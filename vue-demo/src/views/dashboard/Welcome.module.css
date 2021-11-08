@@ -1,0 +1,52 @@
+.pageContainer {
+	height: 100%;
+}
+
+.statisticContainer {
+	display: flex;
+	margin: -8px;
+}
+
+.statisticItem {
+	padding: 8px;
+	width: 25%;
+}
+
+.statistic :global .ant-statistic-title {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.chartContainer {
+	display: flex;
+	margin: -8px;
+	height: 700px;
+}
+
+.chartItem {
+	padding: 8px;
+	width: 75%;
+}
+
+.chartItemSmall {
+	padding: 8px 0 8px 8px;
+	width: 25%;
+}
+
+.chartCard {
+	height: 100%;
+}
+
+.rightContainer {
+	display: flex;
+	flex-direction: column;
+	margin: -8px;
+}
+
+.rightItem {
+	padding: 8px;
+	width: 100%;
+	padding-right: 0;
+	height: 50%;
+}
